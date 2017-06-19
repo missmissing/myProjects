@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://www.mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeAliases>
+ 		<typeAlias type="com.huatu.ou.user.model.User" alias="User" /> 
+ 		<typeAlias type="com.huatu.ou.organization.model.Organization" alias="Organization" /> 
+ 		<typeAlias type="com.huatu.ou.menu.model.Menu" alias="Menu" /> 
+ 		<typeAlias type="com.huatu.ou.role.model.Role" alias="Role" /> 
+ 		<typeAlias type="com.huatu.ou.roleMenu.model.Role_Menu" alias="Role_Menu" />
+	</typeAliases>
+</configuration>

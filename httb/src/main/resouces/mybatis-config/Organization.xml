@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huatu.ou.organization.model.Organization">
+
+	<resultMap id="BaseResultMap" type="Organization">
+		<id column="id" jdbcType="VARCHAR" property="id" />
+		<result column="delflag" jdbcType="TINYINT" property="delFlag" />
+		<result column="createtime" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="createuser" jdbcType="VARCHAR" property="createUser" />
+		<result column="description" jdbcType="VARCHAR" property="description" />
+		
+		<result column="name" jdbcType="VARCHAR" property="name" />
+		<result column="organizationno" jdbcType="VARCHAR" property="organizationNo" />
+		<result column="sort" jdbcType="TINYINT" property="sort" />
+	</resultMap>
+	
+	<resultMap type="Organization" id="relationResultMap" extends="BaseResultMap">
+		<association property="parentOrg" javaType="Organization">
+			<result column="parent_id" property="id" />
+			<result column="parent_name" property="name" />
+			<result column="parent_organizationno" property="organizationNo" />
+		</association>
+	</resultMap>
+	
+	
+	<sql id="Base_Column_List">
+		SID, DEL_FLAG, CREATE_TIME, CREATE_USER, NAME, SHORT_NAME,ZMROPLDEP,DESCRIP,
+		ORGANIZATION_NO, DESCRIPTION,
+		SORT, UPDATE_TIME, UPDATE_USER, PID
+	</sql>
+	<sql id="PBase_Column_List">
+		o.SID, o.DEL_FLAG, o.CREATE_TIME, o.CREATE_USER, o.NAME, o.SHORT_NAME,o.ZMROPLDEP,o.DESCRIP,
+		o.ORGANIZATION_NO, o.DESCRIPTION,
+		o.SORT, o.UPDATE_TIME, o.UPDATE_USER, o.PID
+	</sql>
+	
+	<!-- 动态sql条件查询组织机构 -->
+	<select id="selectList" resultMap="relationResultMap" >
+		select o.*,p.id as parent_id,p.name as parent_name,p.organizationno as parent_organizationno from ht_organization o  
+		LEFT JOIN ht_organization p on o.pid=p.id
+		where o.delflag!=1
+		<if test="name != null">
+			and o.name like '%${name}%'
+		</if>
+		
+		<if test="id != null">
+			and o.id ='${id}'
+		</if>
+		<if test="pageNum != null">
+			limit ${pageNum},${pageSize}
+		</if>	
+	</select>
+	
+	<insert id="insert" parameterType="organization">
+		insert into ht_organization
+		(id, delflag, createtime,
+		createuser, description, name,pid,
+		organizationno, sort)
+		values (#{id,jdbcType=VARCHAR}, #{delFlag,jdbcType=TINYINT},
+		#{createTime,jdbcType=TIMESTAMP},
+		#{createUser,jdbcType=VARCHAR},
+		#{description,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},#{parentOrg.id,jdbcType=VARCHAR},
+		#{organizationNo,jdbcType=VARCHAR}, #{sort,jdbcType=TINYINT})
+	</insert>
+	
+	<update id="update" parameterType="organization">
+		update ht_organization
+		<set>
+			<if test="delFlag != null">
+				delflag = #{delFlag,jdbcType=TINYINT},
+			</if>
+			<if test="createTime != null">
+				createtime = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createUser != null">
+				createuser = #{createUser,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+
+			<if test="organizationNo != null">
+				organizationno = #{organizationNo,jdbcType=VARCHAR},
+			</if>
+			<if test="description != null">
+				description = #{description,jdbcType=VARCHAR},
+			</if>
+			<if test="sort != null">
+				sort = #{sort,jdbcType=NUMERIC},
+			</if>		
+		</set>
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+	
+	
+	
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		ht_organization
+		where ID in 
+        <foreach item="item" index="index" collection="ids" open="(" separator="," close=")">  
+              #{item}  
+        </foreach>  
+	</delete>
+	
+	<select id="selectCount" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select count(1) from ht_organization
+	</select>
+</mapper>

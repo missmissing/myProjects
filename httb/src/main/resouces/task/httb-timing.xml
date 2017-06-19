@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	<!-- 章节任务 -->
+	<bean id="categoryTask" class="com.huatu.api.task.CategoryTask"
+		scope="prototype" lazy-init="default">
+	</bean>
+	<bean id="categoryTaskTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<bean id="cgExtractJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+				<property name="targetObject" ref="categoryTask" />
+				<property name="targetMethod" value="execute" />
+			</bean>
+		</property>
+		<property name="cronExpression">
+			<value>15 10 00 * * ?</value>
+		</property>
+	</bean>
+	<!-- 章节试题打包任务 -->
+	<bean id="quesToCateTask" class="com.huatu.api.task.QuesToCateTask"
+		scope="prototype" lazy-init="default">
+	</bean>
+	<bean id="quesToCateTaskTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<bean id="qtcExtractJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+				<property name="targetObject" ref="quesToCateTask" />
+				<property name="targetMethod" value="execute" />
+			</bean>
+		</property>
+		<property name="cronExpression">
+			<value>15 40 00 * * ?</value>
+		</property>
+	</bean>
+	<!-- 模拟题任务 -->
+	<bean id="moniTiPaperTask" class="com.huatu.api.task.MoniTiPaperTask"
+		scope="prototype" lazy-init="default">
+	</bean>
+	<bean id="moniTiPaperTaskTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<bean id="mntExtractJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+				<property name="targetObject" ref="moniTiPaperTask" />
+				<property name="targetMethod" value="execute" />
+			</bean>
+		</property>
+		<property name="cronExpression">
+			<value>15 10 01 * * ?</value>
+		</property>
+	</bean>
+	<!-- 真题任务 -->
+	<bean id="zhenTiPaperTask" class="com.huatu.api.task.ZhenTiPaperTask"
+		scope="prototype" lazy-init="default">
+	</bean>
+	<bean id="zhenTiPaperTaskTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<bean id="ztExtractJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+				<property name="targetObject" ref="zhenTiPaperTask" />
+				<property name="targetMethod" value="execute" />
+			</bean>
+		</property>
+		<property name="cronExpression">
+			<value>15 40 01 * * ?</value>
+		</property>
+	</bean>
+
+	<!-- 试卷分析任务 -->
+	<bean id="examAnalysisTask" class="com.huatu.api.task.ExamAnalysisTask"
+		scope="prototype" lazy-init="default">
+	</bean>
+	<bean id="examAnalysisTaskTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<bean id="examAnalysisExtractJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+				<property name="targetObject" ref="examAnalysisTask" />
+				<property name="targetMethod" value="execute" />
+			</bean>
+		</property>
+		<property name="cronExpression">
+			<value>00 58 23 * * ?</value>
+		</property>
+	</bean>
+
+	<!-- 试题分析任务 -->
+	<bean id="questionAnalysisTask" class="com.huatu.api.task.QuestionAnalysisTask"
+		scope="prototype" lazy-init="default">
+	</bean>
+	<bean id="questionAnalysisTaskTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<bean id="questionAnalysisExtractJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+				<property name="targetObject" ref="questionAnalysisTask" />
+				<property name="targetMethod" value="execute" />
+			</bean>
+		</property>
+		<property name="cronExpression">
+			<value>00 59 23 * * ?</value>
+		</property>
+	</bean>
+
+	<!-- 任务管理容器 -->
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<!-- <ref local="questionAnalysisTaskTrigger" />
+				<ref local="examAnalysisTaskTrigger" /> -->
+ 				<ref local="categoryTaskTrigger" />
+ 				<ref local="quesToCateTaskTrigger" />
+ 				<ref local="moniTiPaperTaskTrigger" />
+ 				<ref local="zhenTiPaperTaskTrigger" />
+			</list>
+		</property>
+	</bean>
+</beans>

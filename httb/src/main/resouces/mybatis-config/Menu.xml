@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huatu.ou.menu.model.Menu">
+	<resultMap id="BaseResultMap" type="Menu">
+		<id column="id" jdbcType="VARCHAR" property="id" />
+		<result column="delflag" jdbcType="TINYINT" property="delFlag" />
+		<result column="createtime" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="createuser" jdbcType="VARCHAR" property="createUser" />
+		<result column="description" jdbcType="VARCHAR" property="description" />
+		
+		<result column="code" property="code" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="type" property="type" jdbcType="TINYINT" />
+		<result column="level" property="level" jdbcType="TINYINT" />
+		<result column="url" property="url" jdbcType="VARCHAR" />
+		<result column="parentid" property="parentId" jdbcType="VARCHAR" />
+		<result column="iconUrl" property="iconUrl" jdbcType="VARCHAR" />
+		<result column="orderNum" property="orderNum" jdbcType="TINYINT" />
+		<result column="childContents" property="childContents" jdbcType="TINYINT" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		delflag, createtime, createtime, createuser, description,
+		code,type,level, url,parentId,iconUrl, orderNum
+	</sql>
+	
+	<select id="selectAllMenus" resultMap="BaseResultMap">
+		SELECT
+			a.id,
+			a.parentid,
+			a. NAME,
+			a.url,
+			a.level,
+			IFNULL(a.ordernum,0) ordernum,
+			(
+				SELECT
+					CONCAT(
+						group_concat(c.id SEPARATOR ','),
+						'#',
+						group_concat(c. NAME SEPARATOR ','),
+						'#',
+						group_concat(c.url SEPARATOR ','),
+						'#',
+						group_concat(c.level SEPARATOR ','),
+						'#',
+						group_concat(IFNULL(c.ordernum,0) SEPARATOR ',')
+					)
+				FROM
+					ht_menu c
+				WHERE
+					c.parentid = a.id
+			) AS childContents
+		FROM
+			ht_menu a
+		WHERE
+			a. LEVEL = 1
+	</select>
+
+   <select id="selectAllMenusByUserId" resultMap="BaseResultMap">
+		SELECT
+			a.id,
+			a.parentid,
+			a. NAME,
+			a.url,
+			a.level,
+			IFNULL(a.ordernum,0) ordernum,
+			(
+				SELECT
+					CONCAT(
+						group_concat(c.id SEPARATOR ','),
+						'#',
+						group_concat(c. NAME SEPARATOR ','),
+						'#',
+						group_concat(c.url SEPARATOR ','),
+						'#',
+						group_concat(c.level SEPARATOR ','),
+						'#',
+						group_concat(IFNULL(c.ordernum,0) SEPARATOR ',')
+					)
+				FROM
+					ht_menu c
+				WHERE
+					c.parentid = a.id
+				and c.id in
+				(
+					select rm.menu_id  from ht_role_menu rm
+				 		 where  rm.role_id in(
+								select ur.role_id  from ht_user_role ur
+				  				where ur.user_id=#{user_id,jdbcType=VARCHAR}
+				)
+				)	
+					
+			) AS childContents
+		FROM
+			ht_menu a
+		where a. LEVEL = 1
+		and a.id in
+		(
+			select rm.menu_id  from ht_role_menu rm
+		 		 where  rm.role_id in(
+						select ur.role_id  from ht_user_role ur
+		  				where ur.user_id=#{user_id,jdbcType=VARCHAR}
+		)
+		)
+	</select>
+	
+	<select id="selectWholeMenus" resultMap="BaseResultMap">
+		SELECT
+			a.id,
+			a.parentid,
+			a. NAME,
+			a.url,
+			a.level
+		FROM
+			ht_menu a
+	</select>
+
+	<!-- 动态sql条件查询菜单 -->
+	<select id="selectListoriginal" resultMap="BaseResultMap" >
+		select h1.id,
+		h1.delflag, h1.createtime, h1.createtime, h1.createuser, h1.description,
+		h1.code,h1.type,h1.level, h1.url,h1.name,h1.parentId,
+		h1.iconUrl, h1.orderNum 
+		from ht_menu h1 where h1.delflag!=1 
+		<if test="name != null">
+			and h1.name like '%${name}%'
+		</if>
+		
+		<if test="id != null">
+			and h1.id ='${id}'
+		</if>
+		order by h1.level asc,h1.ordernum asc
+	</select>
+	
+	
+	<!-- 动态sql条件查询菜单 -->
+	<select id="selectList" resultMap="BaseResultMap" >
+		select h1.id,
+		h1.delflag, h1.createtime, h1.createtime, h1.createuser, h1.description,
+		h1.code,h1.type,h1.level, h1.url,h1.name,
+		(select name from ht_menu b where b.id=h1.parentid) as  parentId,
+		h1.iconUrl,IFNULL(h1.orderNum,0) orderNum
+		from ht_menu h1 where h1.delflag!=1 
+		<if test="name != null">
+			and h1.name like '%${name}%'
+		</if>
+		
+		<if test="id != null">
+			and h1.id ='${id}'
+		</if>
+		order by h1.level asc
+		<if test="pageNum != null">
+			limit ${pageNum},${pageSize}
+		</if>
+	</select>
+
+	<insert id="insert" parameterType="organization">
+		insert into ht_menu
+		(id, delflag, createtime,
+		createuser, description, name,code,type,level,url,parentid,iconUrl,orderNum
+		)
+		values (#{id,jdbcType=VARCHAR}, #{delFlag,jdbcType=TINYINT},
+		#{createTime,jdbcType=TIMESTAMP},
+		#{createUser,jdbcType=VARCHAR},
+		#{description,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},
+		#{code,jdbcType=VARCHAR},
+		#{type,jdbcType=TINYINT},
+		#{level,jdbcType=TINYINT},
+		#{url,jdbcType=TINYINT},
+		#{parentId,jdbcType=TINYINT},
+		#{iconUrl,jdbcType=TINYINT},
+		#{orderNum,jdbcType=TINYINT})
+	</insert>
+	
+	<update id="update" parameterType="organization">
+		update ht_menu
+		<set>
+			<if test="delFlag != null">
+				delflag = #{delFlag,jdbcType=TINYINT},
+			</if>
+			<if test="createTime != null">
+				createtime = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createUser != null">
+				createuser = #{createUser,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+
+			<if test="description != null">
+				description = #{description,jdbcType=VARCHAR},
+			</if>	
+			<if test="url != null">
+				url = #{url,jdbcType=VARCHAR},
+			</if>
+			<if test="level != null">
+				level = #{level,jdbcType=VARCHAR},
+			</if>
+			<if test="parentId != null">
+				parentId = #{parentId,jdbcType=VARCHAR},
+			</if>
+			<if test="orderNum != null">
+				orderNum = #{orderNum,jdbcType=VARCHAR},
+			</if>
+			
+		</set>
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+	
+	
+	
+	<delete id="deleteByPrimaryKey" parameterType="java.util.Map">
+		delete from
+		ht_menu
+		where ID in 
+        <foreach item="item" index="index" collection="ids" open="(" separator="," close=")">  
+              #{item}  
+        </foreach>  
+	</delete>
+	
+	<!-- 根据菜单id查询单个菜单 -->
+	<select id="selectMenuById" resultMap="BaseResultMap" parameterType="java.lang.String">
+	  select * from ht_menu
+		where ID = #{id,jdbcType=VARCHAR}
+	</select>
+	
+	<select id="menuIsUesd" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select count(1) from ht_role_menu
+		where menu_id =  #{menu_id} 
+	</select>
+	
+	<select id="selectCount" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select count(1) from ht_menu
+	</select>
+	
+	
+</mapper>

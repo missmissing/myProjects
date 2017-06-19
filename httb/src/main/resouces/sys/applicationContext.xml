@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+	<!-- 初始化系統參數配置 -->
+	<!-- <bean id="initProperty" class="com.huatu.core.container.InitProperty">
+		<property name="title">
+			<value>华图在线题库-后台管理</value>
+		</property>
+		<property name="copyright">
+			<value>
+				<![CDATA[
+					© 2015 华图教育 Corporation
+				]]>
+			</value>
+		</property>
+		<property name="template">
+			<value>template01</value>
+		</property>
+		<property name="theme">
+			<value>gray</value>
+		</property>
+	</bean> -->
+
+</beans>

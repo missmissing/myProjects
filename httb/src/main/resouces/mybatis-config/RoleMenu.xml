@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huatu.ou.role.model.Role_Menu">
+	
+	<resultMap id="BaseResultMap" type="Role_Menu">
+		<result column="menu_id" jdbcType="VARCHAR" property="menu_id" />
+		<result column="role_id" jdbcType="VARCHAR" property="role_id" />
+	</resultMap>
+	
+	<!-- 动态sql条件查询组织机构 -->
+	<select id="selectList" resultMap="BaseResultMap" >
+		select * from ht_role_menu h where 1=1 
+		<if test="menu_id != null">
+			and h.menu_id ='%${menu_id}%'
+		</if>
+		
+		<if test="role_id != null">
+			and h.role_id ='${role_id}'
+		</if>
+		
+	</select>
+	
+	<insert id="insert_role_menus" parameterType="java.util.Map">
+		INSERT INTO ht_role_menu(role_id,menu_id)  VALUES 
+		 <foreach collection="list" item="item" index="index"  separator="," >
+            (#{item.role_id}, #{item.menu_id})
+         </foreach>  
+	</insert>
+	
+	<insert id="delete_role_menus" parameterType="java.lang.String">
+		delete from ht_role_menu 
+		where role_id = #{id,jdbcType=VARCHAR}
+	</insert>
+	
+	
+</mapper>
