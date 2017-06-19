@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee;http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+	<display-name>httb</display-name>
+	<!-- 如果不定义webAppRootKey参数，那么webAppRootKey就是缺省的"webapp.root"。但最好设置，以免项目之间的名称冲突。
+		定义以后，在Web Container启动时将把ROOT的绝对路径写到系统变量里。 然后log4j的配置文件里就可以用${webName.root
+		}来表示Web目录的绝对路径，把log文件存放于webapp中。 此参数用于后面的“Log4jConfigListener” -->
+	<context-param>
+		<param-name>webAppRootKey</param-name>
+		<param-value>webapp.root</param-value>
+	</context-param>
+
+	<!--默认跳转页面 -->
+	<welcome-file-list>
+		<welcome-file>common/index.jsp</welcome-file>
+	</welcome-file-list>
+
+	<listener>
+		<listener-class>com.huatu.core.listener.StartupListener</listener-class>
+	</listener>
+    <!--sessionListener -->
+    <listener>
+		<listener-class>com.huatu.core.listener.SessionListener</listener-class>
+	</listener>
+
+	<!-- springMVC配置文件 -->
+	<servlet>
+		<servlet-name>springmvc</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:springMVC.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+    <!-- 定义spring配置文件 -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+			classpath*:sys/*.xml
+		</param-value>
+	</context-param>
+
+	<servlet-mapping>
+		<servlet-name>springmvc</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
+       <session-config>  
+         <session-timeout>30</session-timeout>  
+       </session-config>  
+     
+ 
+
+	<filter>
+        <filter-name>sessionFilter</filter-name>
+        <filter-class>com.huatu.sys.filter.SessionFilter</filter-class>
+    </filter>
+
+ 	<!-- 设置字符编码方式-->
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter
+		</filter-class>
+		<async-supported>true</async-supported>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>utf-8</param-value>
+		</init-param>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+    <filter-mapping>
+        <filter-name>sessionFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+
+	<!-- 浏览器不支持put,delete等method,由该filter将/blog?_method=delete转换为标准的httpdelete方法 -->
+	<filter>
+	<filter-name>HiddenHttpMethodFilter</filter-name>
+	<filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+	<filter-name>HiddenHttpMethodFilter</filter-name>
+	<servlet-name>springmvc</servlet-name>
+	</filter-mapping>
+
+	  <jsp-config>
+        <jsp-property-group>
+            <url-pattern>*.jsp</url-pattern>
+            <el-ignored>false</el-ignored>
+            <page-encoding>utf-8</page-encoding>
+        </jsp-property-group>
+    </jsp-config>
+
+	<!-- 出错页面定义 -->
+	<error-page>
+		<exception-type>java.lang.Throwable</exception-type>
+		<location>/common/404.jsp</location>
+	</error-page>
+	<error-page>
+		<exception-type>java.lang.Exception</exception-type>
+		<location>/common/500.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/common/500.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/common/404.jsp</location>
+	</error-page>
+</web-app>
