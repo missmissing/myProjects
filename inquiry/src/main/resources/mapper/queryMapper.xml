@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.design.graduation.inquiry.dao.IQueryDao">
+    <resultMap id="fundByConditionMap" type="com.design.graduation.inquiry.dto.AccumulationFund">
+        <id column="USER_ID" property="userId"/>
+        <result column="USER_ACCOUNT" property="userAccount"/>
+        <result column="USER_IDNTIFY" property="userIdntify"/>
+        <result column="USER_NAME" property="userName"/>
+        <result column="USER_STATE" property="userState"/>
+        <result column="USER_WORKUNIT" property="userWorkunit"/>
+        <result column="USER_OPENDATE" property="userOpendate"/>
+        <result column="USER_DEPOSIT" property="userDeposit"/>
+        <result column="USER_REGION" property="userRegion"/>
+        <collection property="desipoteList" ofType="com.design.graduation.inquiry.model.Desipote">
+            <id column="DESIPOTE_ID" property="desipoteId"/>
+            <result column="USER_ID" property="userId"/>
+            <result column="DESIPOTE_DATE" property="desipoteDate"/>
+            <result column="DESIPOTE_WORKUNIT" property="desipoteWorkunit"/>
+            <result column="DESIPOTE_MONEY" property="desipoteMoney"/>
+            <result column="DESIPOTE_BDESCRIPTTION" property="desipoteBdescripttion"/>
+        </collection>
+    </resultMap>
+
+    <resultMap id="socialByConditionMap" type="com.design.graduation.inquiry.dto.SocialSecurity">
+        <result column="USER_NAME" property="userName"/>
+        <result column="USER_WORKUNIT" property="userWorkunit"/>
+        <result column="USER_OPENDATE" property="userOpendate"/>
+        <result column="USER_PAYMENT" property="userPayment"/>
+        <collection property="socialTotalList" ofType="com.design.graduation.inquiry.model.SocialTotal">
+            <result column="TOTAL_INSURANCE" property="totalInsurance"/>
+            <result column="TOTAL_BALANCE" property="totalBalance"/>
+            <result column="TOTAL_EXPORE" property="totalExpore"/>
+            <result column="TOTAL_STATE" property="totalState"/>
+        </collection>
+    </resultMap>
+
+     <!-- 插入查询记录 -->
+    <insert id="insertQueryRecord" parameterType="com.design.graduation.inquiry.model.Query">
+        INSERT INTO T_QUERY (ACCOUNT_ID,QUERY_DATE,QUERY_CON,QUERY_DELE) VALUE (#{accountId},#{queryDate},#{queryCon},#{queryDele});
+    </insert>
+    <!-- 查询公积金信息 -->
+    <select id="queryFundByCondition" parameterType="com.design.graduation.inquiry.dto.QueryCondition" resultMap="fundByConditionMap">
+        SELECT TBI.USER_ID,USER_ACCOUNT,USER_IDNTIFY,USER_NAME,USER_STATE,USER_WORKUNIT,USER_OPENDATE,USER_DEPOSIT,USER_REGION,
+             DESIPOTE_ID,DESIPOTE_DATE,DESIPOTE_WORKUNIT,DESIPOTE_MONEY,DESIPOTE_BDESCRIPTTION FROM T_BASE_INFO TBI ,T_DESIPOTE TD
+             WHERE TBI.USER_ID = TD.USER_ID
+        <if test="phoneCondition != null and phoneCondition!=''">
+            AND USER_PHONE = #{phoneCondition}
+        </if>
+        <if test="userNameCondition != null and userNameCondition!=''">
+            AND USER_NAME = #{userNameCondition}
+        </if>
+        <if test="idCardCondition != null and idCardCondition!=''">
+            AND USER_IDNTIFY = #{idCardCondition}
+        </if>
+    </select>
+
+    <!-- 查询社保信息 -->
+    <select id="querySocialByCondition" parameterType="com.design.graduation.inquiry.dto.QueryCondition" resultMap="socialByConditionMap">
+        SELECT TBI.USER_ID,USER_ACCOUNT,USER_IDNTIFY,USER_NAME,USER_STATE,USER_WORKUNIT,USER_OPENDATE,USER_DEPOSIT,USER_REGION,
+            DESIPOTE_ID,DESIPOTE_DATE,DESIPOTE_WORKUNIT,DESIPOTE_MONEY,DESIPOTE_BDESCRIPTTION FROM T_BASE_INFO TBI ,T_DESIPOTE TD
+            WHERE TBI.USER_ID = TD.USER_ID
+            <if test="phoneCondition != null and phoneCondition!=''">
+                AND USER_PHONE = #{phoneCondition}
+            </if>
+            <if test="userNameCondition != null and userNameCondition!=''">
+                AND USER_NAME = #{userNameCondition}
+            </if>
+            <if test="idCardCondition != null and idCardCondition!=''">
+                AND USER_IDNTIFY = #{idCardCondition}
+            </if>
+    </select>
+
+    <!-- 查询学历学籍信息 -->
+    <select id="queryEducationByCondition" parameterType="com.design.graduation.inquiry.dto.QueryCondition" resultType="com.design.graduation.inquiry.dto.AcademicRecord">
+        SELECT TBI.USER_NAME,TBI.USER_GENDER,TBI.USER_IDNTIFY,TBI.USER_BIRTHDAY,
+        TC.CENSUS_LENGTH,TC.CENSUS_SCHOOLDATE,TC.CENSUS_INSTITUATION,TC.CENSUS_MAJOR,TC.CENSUS_NUMBER,
+        TH.HISTORY_CERTIFICATE,TH.HISTORY_LEVERL,TH.HISTORY_FORM,TH.HISTORY_INSTITUATION,TH.HISTORY_SCHOOLDATE,TH.HISTORY_GRADUATION
+        FROM T_BASE_INFO TBI,T_CENSUS TC,T_HISTORY TH WHERE TBI.USER_ID = TC.USER_ID = TH.USER_ID
+        <if test="userNameCondition != null and userNameCondition!=''">
+            AND USER_NAME = #{userNameCondition}
+        </if>
+        <if test="idCardCondition != null and idCardCondition!=''">
+            AND USER_IDNTIFY = #{idCardCondition}
+        </if>
+    </select>
+
+    <!-- 查询职业社交信息 -->
+    <select id="queryContactByCondition" parameterType="com.design.graduation.inquiry.dto.QueryCondition" resultType="com.design.graduation.inquiry.dto.ProfessionalSocial">
+        SELECT TBI.USER_HOUSEHOLD,TBI.USER_BIRTHDAY,TBI.USER_SESNAME,TBI.USER_DESCRIPTION,
+        TE.EDUCATION_SCHOOL,TE.EDUCATION_MAJOR,TE.EDUCATION_EDUCATION,TE.EDUCATION_EDESCRIPTION,TE.EDUCATION_OPENDATE,TE.EDUCATION_EXPIRE,
+        TW.WORK_COMPANY,TW.WORK_POST,TW.WORK_WDESCRIPTION,TW.WORK_MDESCRIPTION,TW.WORK_OPENDATE,TW.WORK_EXPIRE
+        FROM T_BASE_INFO TBI,T_EDUCATION TE,T_WORK TW WHERE TBI.USER_ID = TE.USER_ID =TW.USER_ID
+        <if test="userNameCondition != null and userNameCondition!=''">
+            AND USER_NAME = #{userNameCondition}
+        </if>
+        <if test="idCardCondition != null and idCardCondition!=''">
+            AND USER_IDNTIFY = #{idCardCondition}
+        </if>
+    </select>
+
+    <!-- 查询失信人信息 -->
+    <select id="queryDishonestByCondition" parameterType="com.design.graduation.inquiry.dto.QueryCondition" resultType="com.design.graduation.inquiry.dto.Dishonest">
+        SELECT TBI.USER_NAME,TBI.USER_GENDER,TE.EXECUTE_IDENTIFY,TE.EXECUTE_FILING,TE.EXECUTE_COURT,TE.EXECUTE_COMPLIANCE,TE.EXECUTE_TYPE,TE.EXECUTE_ATTENTION,
+        TE.EXECUTE_PROVINCEE,TE.EXECUTE_EXECUTE,TE.EXECUTE_UNFULFILED,TN.NONEXECUTE_TYPE,TN.NONEXECUTE_AGE,TN.NONEXECUTE_UNFULFILED,TN.NONEXECUTE_OBJECT,TN.NONEXECUTE_FILING,
+        TN.NONEXECUTE_PUBLICTIME,TN.NONEXECUTE_COURT,TN.NONEXECUTE_EXECUTE,TN.NONEXECUTE_ATTENTION
+        FROM T_BASE_INFO TBI,T_EXECUTE TE,T_NONEXECUTE TN WHERE TBI.USER_ID = TE.USER_ID =TN.USER_ID
+        <if test="userNameCondition != null and userNameCondition!=''">
+            AND USER_NAME = #{userNameCondition}
+        </if>
+        <if test="idCardCondition != null and idCardCondition!=''">
+            AND USER_IDNTIFY = #{idCardCondition}
+        </if>
+    </select>
+
+    <!-- 查询记录逻辑删除信息 -->
+    <update id="deleteQueryRecordById" parameterType="java.lang.Integer">
+        UPDATE T_QUERY SET QUERY_DELE = '1' WHERE QUERY_ID = #{queryId}
+    </update>
+
+    <!-- 查询当前登录人查询记录信息-->
+    <select id="queryQueryRecord" parameterType="java.lang.Integer" resultType="com.design.graduation.inquiry.dto.Query">
+        SELECT QUERY_ID,USER_ID,QUERY_DATE,QUERY_CON,TBI.USER_NAME FROM T_QUERY TQ,T_BASE_INFO TBI WHERE QUERY_DELE = '0' AND TBI.USER_ID = TQ.USER_ID = #{userId}
+    </select>
+
+    <!-- 查询用户基本信息-->
+    <select id="queryBaseInfo" parameterType="java.lang.Integer" resultType="com.design.graduation.inquiry.model.BaseInfo">
+        SELECT USER_ID,USER_NAME,USER_MONEY FROM T_BASE_INFO WHERE USER_ID = #{userId}
+    </select>
+
+    <update id="updateUserMoney" parameterType="com.design.graduation.inquiry.model.BaseInfo">
+        UPDATE T_BASE_INFO SET USER_MONEY =#{userMoney} WHERE USER_ID = #{userId}
+    </update>
+</mapper>

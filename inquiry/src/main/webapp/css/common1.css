@@ -1,0 +1,43 @@
+body{
+    font-family:"STHeiti",Microsoft YaHei,Arial,sans-serif;
+    color: #000000;
+    overflow-x: hidden;
+}
+body textarea{
+    resize: none;
+}
+body label{
+    font-weight: 100;
+}
+/******登录导航区域*******/
+body .navbar{
+    margin-bottom: 0;
+}
+.navbar .login-field{
+    line-height: 40px;
+    background-color: #313131;
+    color: #fff;
+}
+.navbar .split{
+    color: #000000;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.navbar .login-field span:not(.split){
+    cursor: pointer;
+}
+.navbar .nav a{
+    font-size: 18px;
+    color: #000000;
+}
+/*******菜单导航******/
+.navbar .collapse ul a{
+    line-height: 50px;
+}
+/*****footer*********/
+ .footer {
+    color: #666666;
+    font-size: 14px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}

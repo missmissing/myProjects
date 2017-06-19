@@ -1,0 +1,161 @@
+/*定义付费内容的样式*/
+form#payment {
+    background: #9cbc2c;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    padding: 20px;
+    width: 400px;
+    margin:auto;
+}
+form#payment fieldset {
+    border: none;
+    margin-bottom: 10px;
+}
+form#payment fieldset:last-of-type { margin-bottom: 0; }
+form#payment legend {
+    color: #384313;
+    font-size: 16px;
+    font-weight: bold;
+    padding-bottom: 10px;
+    text-shadow: 0 1px 1px #c0d576;
+}
+form#payment > fieldset > legend:before {
+    content: "Step " counter(fieldsets) ": ";
+    counter-increment: fieldsets;
+}
+form#payment fieldset fieldset legend {
+    color: #111111;
+    font-size: 13px;
+    font-weight: normal;
+    padding-bottom: 0;
+}
+form#payment ol li {
+    background: #b9cf6a;
+    background: rgba(255, 255, 255, .3);
+    border-color: #e3ebc3;
+    border-color: rgba(255, 255, 255, .6);
+    border-style: solid;
+    border-width: 2px;
+    -webkit-border-radius: 5px;
+    line-height: 30px;
+    list-style: none;
+    padding: 5px 10px;
+    margin-bottom: 2px;
+}
+form#payment ol ol li {
+    background: none;
+    border: none;
+    float: right;
+}
+form#payment label {
+    float: left;
+    font-size: 13px;
+    width: 110px;
+}
+form#payment fieldset fieldset label {
+    background: none no-repeat left 50%;
+    line-height: 20px;
+    padding: 0 0 0 30px;
+    width: auto;
+}
+form#payment fieldset fieldset label:hover { cursor: pointer; }
+form#payment input:not([type=radio]), form#payment textarea {
+    background: #ffffff;
+    border: #FC3 solid 1px;
+    -webkit-border-radius: 3px;
+    font: italic 13px Georgia, "Times New Roman", Times, serif;
+    outline: none;
+    padding: 5px;
+    width: 200px;
+}
+form#payment input:not([type=submit]):focus, form#payment textarea:focus {
+    background: #eaeaea;
+    border: #F00 solid 1px;
+}
+form#payment input[type=radio] {
+    float: left;
+    margin-right: 5px;
+}
+
+.nav-box{
+    z-index: 10;
+    position: absolute;
+    left: 0;
+    top: 0;
+    min-width: 1200px;
+    width: 100%;
+    background-color: #e2ffe8;
+    -webkit-animation:mymove 5s infinite ;
+    animation:mymove 5s infinite;
+}
+@-webkit-keyframes mymove {
+    50%{background-color: #fffdd9;}
+
+}
+@keyframes mymove {
+    50%{background-color: #bed1bc
+    }
+}
+
+.nav {
+    float: right;
+    line-height: 22px;
+    font-weight: bold;
+    margin-top: -80px;
+    margin-right: 250px;
+}
+ul{
+    list-style-type:none;
+
+    padding:0;
+    overflow:hidden;
+}
+li{
+    float:left;
+    width:140px;
+}
+a{
+    text-decoration: none;
+}
+
+.tu  {
+    float:left;
+
+}
+.sou{
+    margin-top: 148px;
+    padding: 100px 44px 30px 44px;
+    box-sizing: border-box;
+    min-height: 90px;
+    border: 1px solid #6c4c4c;
+    background-color: #dedcc0;
+    -webkit-animation:mybox 25s infinite ;
+    animation:mybox 25s infinite;
+}
+@-webkit-keyframes mybox {
+    50%{background-color: #696f6e;}
+
+}
+@keyframes mybox {
+    50%{background-color: #5b4845
+    }
+}
+
+a:hover{
+    color:aqua;
+}
+.value{
+    margin-top:25px;
+    margin-left:20px;
+    font-size: 20px;
+    background-color: #dbe5cf;
+    width: 264px;
+    height:40px;
+}
+
+.Maccount {
+    margin-top:150px;
+    padding: 20px 124px;
+    padding-bottom: 40px;
+    min-height: 500px;
+}

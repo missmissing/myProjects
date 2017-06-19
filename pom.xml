@@ -8,8 +8,13 @@
     <artifactId>myProjects</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+
     <modules>
+        <module>httb</module>
+        <module>inquiry</module>
+        <module>maventest</module>
         <module>mytest</module>
+        <module>ssm</module>
     </modules>
 
 

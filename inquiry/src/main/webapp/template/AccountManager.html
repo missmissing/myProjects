@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="../css/common.css">
+    <link rel="stylesheet" type="text/css" href="../css/login.css">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+<meta charset="UTF-8">
+<title>AccountManager</title>
+</head>
+<body>
+<div class="nav-box">
+    <div id="tu">
+        <img src="../images/zhengxin.png" style="width:90px;height:90px;" alt="征信logo"/>
+    </div>
+    <div class="nav">
+        <ul>
+            <li><a href="index.html">首页</a></li>
+            <li><a href="SocialSecurity.html">社保查询</a></li>
+            <li><a href="Fund.html">公积金查询</a></li>
+            <li><a href="ProfessionalSocial.html">职业社交信息</a></li>
+            <li><a href="AcademicRecord.html">学历学籍信息</a></li>
+            <li><a href="Dishonest.html">失信人信息</a></li>
+            <li><a href="AccountManager.html">账户管理</a></li>
+        </ul>
+
+    </div>
+    <div style="margin-left: 1200px;margin-top: -70px;font-size: 20px;">
+        <a href="../login.html"><b>退出</b></a>
+    </div>
+</div>
+<div id="b3">
+    <div class="Maccount">
+        <img src="../images/user.png" style="width:75px;height:70px;" alt="用户图片"/>
+        <p style="font-size: 20px;color:white;">修改密码</p>
+        <div class="row form-content">
+            <div class="col-xs-12">
+                <form style="width: 200px;margin-top: -40px; margin-left: 120px;" onsubmit="javascript:return false;">
+                    <div  class="form-group">
+                    <label class="sr-only" for="accountPassword">原始密码</label>
+                    <input type="password" class="form-control" name="accountPassword" id="accountPassword" placeholder="原始密码">
+                </div>
+                    <div  class="form-group">
+                        <label class="sr-only" for="newAccountPassword">新密码</label>
+                        <input type="password" class="form-control" name="newAccountPassword" id="newAccountPassword" placeholder="新密码">
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="repeat-password">确认密码</label>
+                        <input type="password" class="form-control"  id="repeat-password"  placeholder="确认密码">
+                    </div>
+                    <button style="width:200px;font-size: 15px; " id="submit" type="button" class="btn btn-default submit">确认修改</button>
+                </form>
+                <div  style="margin-left: 70px; display: none;" class="alert alert-danger" role="alert">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    <span id="msg">修改成功</span>
+                </div>
+
+                <img src="../images/money.png" style="width:75px;height:70px;margin-top:-450px;margin-left:700px;" alt="钱包图片"/>
+                <p style="font-size: 20px;color:white;margin-left:700px;margin-top:-200px;">我的余额</p>
+                <form id="id=payment">
+                <fieldset>
+                    <legend>付费方式</legend>
+                        <li>
+                            <fieldset>
+                                    <li>
+                                        <input id=visa name=cardtype type=radio>
+                                        <label for=visa>支付宝</label>
+                                    </li>
+                                    <li>
+                                        <input id=amex name=cardtype type=radio>
+                                        <label for=amex>微信</label>
+                                    </li>
+                            </fieldset>
+                        </li>
+                    </ol>
+                </fieldset>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="f6">
+    <div class="f7" id="copy">版权所有：sgr征信网【专业大数据征信服务平台】copy right@2017 </div>
+
+</div>
+<script type="text/javascript" src="../js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="../js/jquery.tmpl.min.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/AccountManager.js"></script>
+</body>
+</html>

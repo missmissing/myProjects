@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.design.graduation.inquiry.dao.IAccountDao">
+	<select id="login" parameterType="java.lang.String" resultType="java.lang.Integer">
+		SELECT ACCOUNT_ID FROM T_ACCOUNT WHERE ACCOUNT_CODE = #{accountCode} AND ACCOUNT_PASSWORD = #{accountPassword}
+	</select>
+
+    <select id="checkAccountIsExist" parameterType="java.lang.String" resultType="java.lang.Integer">
+        SELECT COUNT(ACCOUNT_ID) FROM T_ACCOUNT WHERE ACCOUNT_CODE = #{accountCode}
+    </select>
+
+	<insert id="register" parameterType="com.design.graduation.inquiry.model.Account" useGeneratedKeys="true" keyProperty="accountId">
+		INSERT INTO T_ACCOUNT (ACCOUNT_CODE,ACCOUNT_PASSWORD,ACCOUNT_STATUS) VALUE (#{accountCode},#{accountPassword},#{accountStatus})
+	</insert>
+
+	<update id="updatePassword" parameterType="com.design.graduation.inquiry.model.Account">
+		UPDATE T_ACCOUNT SET ACCOUNT_PASSWORD=#{accountPassword} WHERE ACCOUNT_ID = #{accountId,jdbcType=INTEGER}
+	</update>
+
+</mapper>

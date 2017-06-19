@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="../css/common.css">
+    <link rel="stylesheet" type="text/css" href="../css/login.css">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <title>ProfessionalSocial</title>
+
+</head>
+
+<body>
+<div class="nav-box">
+    <div id="tu">
+        <img src="../images/zhengxin.png" style="width:90px;height:90px;" alt="征信logo"/>
+    </div>
+    <div class="nav">
+        <ul>
+            <li><a href="index.html">首页</a></li>
+            <li><a href="SocialSecurity.html">社保查询</a></li>
+            <li><a href="Fund.html">公积金查询</a></li>
+            <li><a href="ProfessionalSocial.html">职业社交信息</a></li>
+            <li><a href="AcademicRecord.html">学历学籍信息</a></li>
+            <li><a href="Dishonest.html">失信人信息</a></li>
+            <li><a href="AccountManager.html">账户管理</a></li>
+        </ul>
+    </div>
+    <div style="margin-left: 1200px;margin-top: -70px;font-size: 20px;">
+        <a href="../login.html"><b>退出</b></a>
+    </div>
+</div>
+<div id="b3">
+    <form class="sou" style="margin-left: 420px;margin-right:470px;" onsubmit="return false;">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;姓名：&nbsp;&nbsp;&nbsp;<input type="text" style="width:210px;" name="userNameCondition" required="required" class="Input" autocomplete="on" placeholder="输入姓名">
+        <br/>
+        <br/>
+        身份证号：&nbsp;&nbsp;&nbsp;<input type="" style="width:210px;" name="idCardCondition"  required="required" class="Input" autocomplete="on" placeholder="输入身份证号">
+        <br/>
+        <br/>
+        &nbsp;&nbsp;&nbsp;手机号：&nbsp;&nbsp;&nbsp;<input type="" style="width:210px;" name="phoneCondition"  required="required" class="Input" autocomplete="on" placeholder="输入手机号">
+        <br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button id="query-submit" class="value">查询</button>
+
+    </form>
+</div>
+<div id="ProfessionalSocialForm" style="background-color: #bed1bc"></div>
+<script id="ProfessionalSocial_template" type="text/x-jquery-tmpl">
+<b style="font-size:20px;">基本信息</b>
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <strong>户籍：</strong>
+                                <div class="content">${userHousehold}</div>
+                            </div>
+                            <div class="col-xs-4">
+                                <strong>芝麻信用分：</strong>
+                                <div class="content">${userSesname}</div>
+                            </div>
+                            <div class="col-xs-4">
+                                <strong>出生年月：</strong>
+                                <div class="content">${userBirthday}</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <strong>自我介绍：</strong>
+                                <div class="content">${userDescription}</div>
+                            </div>
+
+                            </div>
+
+                            <b style="font-size:20px;">教育信息</b>
+                             <div class="row">
+                            <div class="col-xs-4">
+                                <strong>学校：</strong>
+                                <div class="content">${educationSchool}</div>
+                            </div>
+                            <div class="col-xs-4">
+                                <strong>单位名称：</strong>
+                                <div class="content">${workCompany}</div>
+                            </div>
+                            <div class="col-xs-4">
+                                <strong>专业：</strong>
+                                <div class="content">${educationMajor}</div>
+                            </div>
+                            <div class="col-xs-4">
+                                <strong>学历：</strong>
+                                <div class="content">${educationEducation}</div>
+                            </div>
+                             <div class="col-xs-4">
+                                <strong>教育描述：</strong>
+                                <div class="content">${educationEdescription}</div>
+                            </div>
+                            <div class="col-xs-4">
+                                <strong>开始时间：</strong>
+                                <div class="content">${educationOpendate}</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <strong>结束时间：</strong>
+                                <div class="content">${educationExpire}</div>
+                            </div>
+                           </div>
+                            <b style="font-size:20px;">工作经历</b>
+                             <div class="row">
+                            <div class="col-xs-4">
+                                <strong>公司：</strong>
+                                <div class="content">${workCompany}</div>
+                            </div>
+                            <div class="col-xs-4">
+                                <strong>职位：</strong>
+                                <div class="content">${workPost}</div>
+                            </div>
+                            <div class="col-xs-4">
+                                <strong>工作描述：</strong>
+                                <div class="content">${workWdescription}</div>
+                            </div>
+                            <div class="col-xs-4">
+                                <strong>学历：</strong>
+                                <div class="content">${educationEducation}</div>
+                            </div>
+                             <div class="col-xs-4">
+                                <strong>自我介绍：</strong>
+                                <div class="content">${workMdescription}</div>
+                            </div>
+                            <div class="col-xs-4">
+                                <strong>开始时间：</strong>
+                                <div class="content">${workOpendate}</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <strong>结束时间：</strong>
+                                <div class="content">${workExpire}</div>
+                            </div>
+                           </div>
+
+    </script>
+<div class="f6">
+    <div class="f7" id="copy">版权所有：sgr征信网【专业大数据征信服务平台】copy right@2017 </div>
+
+</div>
+<script type="text/javascript" src="../js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="../js/jquery.tmpl.min.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/ProfessionalSocial.js"></script>
+
+
+</body>
+</html>

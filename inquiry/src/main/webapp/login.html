@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>征信</title>
+
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/common1.css">
+    <link rel="stylesheet" href="./css/regist.css">
+
+    <!-- Page css -->
+    <!--<script type="text/javascript" >document.write('<link href="css/front/index.css?_='+(new Date()).valueOf()+'" rel="stylesheet">');</script>-->
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+</head>
+<body class="regist">
+<!--nav begin-->
+<nav class="navbar ">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <img src="./images/zhengxin.png" style="width:100px;height:90px;" alt="logo">
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">客服电话：400-400-400</a></li>
+                <li><button class="btn btn-login" id="btn-login">用户注册</button></li>
+            </ul>
+        </div>
+    </div><!-- /.container-fluid -->
+</nav>
+<!--nav end-->
+
+<!--content begin-->
+<div style="height:490px;background-image:url(./images/background.jpg);"class="container-fluid">
+
+    <div style="height:400px;width:430px;margin-top: 60px;background-color: white;float:right;margin-right: 330px;" class="col-xs-6 col-xs-push-3 content">
+        <div style="margin-left: 15px;" class="row regist-content">
+            <div class="title-underline">
+                <div class="col-xs-6">
+                    <div  style="margin-right: -30px;" class="firm focus">
+                        欢迎登录
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row form-content">
+            <div class="col-xs-12">
+                <form onsubmit="javascript:return false;">
+                    <div style="margin-left: 70px;" class="form-group">
+                        <label  class="sr-only" for="accountCode">用户名</label>
+                        <input style="width:220px;" type="text" class="form-control" name="accountCode" id="accountCode" placeholder="用户名（必填）">
+                    </div>
+
+                    <div style="margin-left: 70px;" class="form-group">
+                        <label class="sr-only" for="accountPassword">密码</label>
+                        <input style="width:220px;" type="password" class="form-control" name="accountPassword" id="accountPassword" placeholder="密码（必填）">
+                    </div>
+                    <br/>
+                    <br/>
+                    <button style="margin-left: 70px;width:220px;"  id="J_login-submit" type="button" class="btn btn-default submit">登录</button>
+                </form>
+                <div  style="margin-left: 70px; width:220px;display: none;" class="alert alert-danger" role="alert">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    <span id="J_errorMes">错误提示</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!--content end-->
+
+<!--footer begin-->
+<div style="height:50px;" class="footer" >
+    <div class="row">
+        <div class="col-xs-12 text-center">版权所有：sgr征信网【专业大数据征信服务平台】copy right@2017</div>
+    </div>
+</div>
+<!--footer end-->
+
+<script type="text/javascript" src="./js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="./js/login.js"></script>
+</body>
+</html>

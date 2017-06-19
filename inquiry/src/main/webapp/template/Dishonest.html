@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="../css/common.css">
+    <link rel="stylesheet" type="text/css" href="../css/login.css">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <title>Dishonest</title>
+
+</head>
+
+<body>
+<div class="nav-box">
+    <div id="tu">
+        <img src="../images/zhengxin.png" style="width:90px;height:90px;" alt="征信logo"/>
+    </div>
+    <div class="nav">
+        <ul>
+            <li><a href="index.html">首页</a></li>
+            <li><a href="SocialSecurity.html">社保查询</a></li>
+            <li><a href="Fund.html">公积金查询</a></li>
+            <li><a href="ProfessionalSocial.html">职业社交信息</a></li>
+            <li><a href="AcademicRecord.html">学历学籍信息</a></li>
+            <li><a href="Dishonest.html">失信人信息</a></li>
+            <li><a href="AccountManager.html">账户管理</a></li>
+        </ul>
+    </div>
+    <div style="margin-left: 1200px;margin-top: -70px;font-size: 20px;">
+        <a href="../login.html"><b>退出</b></a>
+    </div>
+</div>
+<div id="b3">
+    <form class="sou" style="margin-left: 420px;margin-right:470px;" onsubmit="return false;">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;姓名：&nbsp;&nbsp;&nbsp;<input type="text" style="width:210px;" name="userNameCondition" required="required" class="Input" autocomplete="on" placeholder="输入姓名">
+        <br/>
+        <br/>
+        身份证号：&nbsp;&nbsp;&nbsp;<input type="" style="width:210px;" name="idCardCondition"  required="required" class="Input" autocomplete="on" placeholder="输入身份证号">
+        <br/>
+        <br/>
+        &nbsp;&nbsp;&nbsp;手机号：&nbsp;&nbsp;&nbsp;<input type="" style="width:210px;" name="phoneCondition"  required="required" class="Input" autocomplete="on" placeholder="输入手机号">
+        <br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button id="query-submit" class="value">查询</button>
+
+    </form>
+</div>
+<div id="DishonestForm" style="background-color: #bed1bc"></div>
+<script id="Dishonest_template" type="text/x-jquery-tmpl">
+<b style="font-size:20px;">失信被执行人信息</b>
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <strong>被执行人姓名 ：</strong>
+                                <div class="content">${userName}</div>
+                            </div>
+                            <div class="col-xs-4">
+                                <strong>性别：</strong>
+                                <div class="content">${userGender}</div>
+                            </div>
+                            <div class="col-xs-4">
+                                <strong>身份证号：</strong>
+                                <div class="content">${executeIdentify}</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <strong>立案时间：</strong>
+                                <div class="content">${executeFiling}</div>
+                            </div>
+
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <strong>失信人类型：</strong>
+                                <div class="content">${executeType}</div>
+                            </div>
+
+                            <div class="col-xs-4">
+                                <strong>公布时间：</strong>
+                                <div class="content">${nonexecutePublictime}</div>
+                            </div>
+                             <div class="col-xs-4">
+                                <strong>执行法院：</strong>
+                                <div class="content">${nonexecuteCourt}</div>
+                            </div>
+
+                            <div class="col-xs-4">
+                                <strong>履约情况：</strong>
+                                <div class="content">${executeCompliance}</div>
+                            </div>
+                            <div class="col-xs-4">
+                                <strong>省份：</strong>
+                                <div class="content">${executeProvincee}</div>
+                            </div>
+                            <div class="col-xs-4">
+                                <strong>关注次数：</strong>
+                                <div class="content">${executeAttention}</div>
+                            </div>
+                            <div class="col-xs-4">
+                                <strong>已履行：</strong>
+                                <div class="content">${executeExecute}</div>
+                            </div>
+                            <div class="col-xs-4">
+                                <strong>未履行：</strong>
+                                <div class="content">${executeUnfulfiled}</div>
+                            </div>
+                            </div>
+
+                            <b style="font-size:20px;">失信未执行人信息</b>
+                             <div class="row">
+                            <div class="col-xs-4">
+                                <strong>被执行人姓名：</strong>
+                                <div class="content">${userName}</div>
+                            </div>
+                            <div class="col-xs-4">
+                                <strong>失信人类型：</strong>
+                                <div class="content">${nonexecuteType}</div>
+                            </div>
+                            <div class="col-xs-4">
+                                <strong>性别：</strong>
+                                <div class="content">${userGender}</div>
+                            </div>
+                            <div class="col-xs-4">
+                                <strong>年龄：</strong>
+                                <div class="content">${nonexecuteAge}</div>
+                            </div>
+                            <div class="col-xs-4">
+                                <strong>未履行：</strong>
+                                <div class="content">${executeUnfulfiled}</div>
+                            </div>
+                            <div class="col-xs-4">
+                                <strong>执行标的：</strong>
+                                <div class="content">${nonexecuteObject}</div>
+                            </div>
+                            <div class="col-xs-4">
+                                <strong>身份证号：</strong>
+                                <div class="content">${executeIdentify}</div>
+                            </div>
+                            <div class="col-xs-4">
+                                <strong>立案时间：</strong>
+                                <div class="content">${nonexecuteFiling}</div>
+                            </div>
+                            <div class="col-xs-4">
+                                <strong>公布时间：</strong>
+                                <div class="content">${nonexecutePublictime}</div>
+                            </div>
+                            <div class="col-xs-4">
+                                <strong>执行法院：</strong>
+                                <div class="content">${nonexecuteCourt}</div>
+                            </div>
+                            <div class="col-xs-4">
+                                <strong>已履行：</strong>
+                                <div class="content">${nonexecuteExecute}</div>
+                            </div>
+                            <div class="col-xs-4">
+                                <strong>关注次数：</strong>
+                                <div class="content">${nonexecuteAttention}</div>
+                            </div>
+                           </div>
+
+    </script>
+<div class="f6">
+    <div class="f7" id="copy">版权所有：sgr征信网【专业大数据征信服务平台】copy right@2017 </div>
+
+</div>
+<script type="text/javascript" src="../js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="../js/jquery.tmpl.min.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/Dishonest.js"></script>
+
+
+</body>
+</html>

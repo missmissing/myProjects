@@ -1,0 +1,124 @@
+/**
+ * Created by TangJun on 2017/2/27 0022.
+ */
+.regist .navbar{
+    margin-bottom: 0px;
+}
+.regist ul.nav a{
+    font-size: 16px;
+    color: #000000;
+}
+.regist ul.nav a:hover{
+    background-color: #ffffff;
+}
+.regist ul.nav .btn-login{
+    margin-top: 20px;
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #028FD7;
+    width: 120px;
+    border: none;
+    padding: 8px 12px;
+    margin-left: 11px;
+}
+.regist ul.nav .btn-login:hover{
+    background-color:#20acf4 ;
+}
+/*************内容主体************/
+.regist .container-fluid{
+    background-color: #E5E5E5;
+}
+.regist .content{
+    background-color: white;
+    margin-top: 30px;
+    padding-bottom: 55px;
+    margin-bottom: 30px;
+}
+.regist .title-underline{
+    overflow: hidden;
+    border-bottom: 1px solid #D8D8D8;
+    margin-left: 30px;
+    margin-right: 30px;
+    line-height: 40px;
+    font-size: 18px;
+    margin-top: 15px;
+}
+.regist .firm{
+    float: right;
+    cursor: pointer;
+}
+.regist .investor{
+    float: left;
+    cursor: pointer;
+}
+.regist .focus{
+    color: #0CA1F5;
+    border-bottom: 2px solid #0CA1F5;
+}
+.regist .form-content{
+    width: 450px;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+.regist .form-content input,.regist .form-content select{
+    height: 40px;
+}
+.regist .security-code {
+    padding-right: 2px;
+}
+.regist .security-code-btn{
+    padding-left: 2px;
+}
+.regist .form-content .security-code-btn button{
+    width: 100%;
+    font-size: 16px;
+    background-color: #F59201;
+    line-height: 26px;
+}
+.address-title>div:nth-child(2){
+    line-height: 40px;
+    font-size: 16px;
+     padding: 0px;
+}
+.address-title hr{
+     border-color: #CCCCCC;
+ }
+.address-title .col-xs-4{
+    width: 40%;
+}
+.address-title .col-xs-3{
+    width: 20%;
+}
+ .upload-title>div:nth-child(2){
+    line-height: 40px;
+    font-size: 16px;
+     padding: 0px;
+}
+ .upload-title hr{
+     border-color: #CCCCCC;
+ }
+ .uploader-list>div{
+     float: left;
+ }
+ .add-img-btn{
+     width: 100px!important;
+     height: 100px!important;
+ }
+.webuploader-container .webuploader-pick{
+    background-color: transparent;
+}
+.regist .submit{
+    width: 100%;
+    font-size: 16px;
+    background-color: #F59201;
+    line-height: 26px;
+    color: #ffffff;
+}
+/**********错误提示框*********/
+.regist  .alert{
+    padding:0;
+    margin:0;
+    margin-top:5px;
+    padding-left: 5px;
+    border-radius: 0;
+}
