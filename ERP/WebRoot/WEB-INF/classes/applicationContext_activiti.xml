@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans 
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- activiti流程引擎对象 -->
+	<bean id="processEngineConfiguration"
+		class="org.activiti.engine.impl.cfg.StandaloneProcessEngineConfiguration">
+		<!-- 设置dbIdentityUsed属性值为false是为了不让activiti找原来的那套用户表，二而是找同名的视图 -->
+		<property name="dbIdentityUsed" value="false"></property>
+		<!-- 设置activiti数据库策略 -->
+		<property name="databaseSchemaUpdate" value="true" />		
+		<!-- 设置activiti对应的数据库策略 -->
+		<property name="dataSource" ref="dataSource_activiti" />
+	</bean>
+	<!-- DataSource -->
+	<bean id="dataSource_activiti"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url"
+			value="jdbc:mysql://localhost:3306/activiti-db?useUnicode=true&amp;characterEncoding=UTF8" />
+		<property name="username" value="root" />
+		<property name="password" value="root" />
+	</bean>
+	
+	<bean id="processEngine" class="org.activiti.spring.ProcessEngineFactoryBean">
+		<property name="processEngineConfiguration" ref="processEngineConfiguration" />
+	</bean>
+
+	
+	
+</beans>

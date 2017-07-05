@@ -12,6 +12,7 @@
     <modules>
         <module>httb</module>
         <module>inquiry</module>
+        <module>jedis</module>
         <module>maventest</module>
         <module>mytest</module>
         <module>ssm</module>

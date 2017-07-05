@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--角色-->
+<hibernate-mapping>
+<class name="cn.itcast.erp.entity.Role" table="role" >
+ <id name="uuid" >
+       <generator class="identity" />
+ </id>
+        <property name="name" />   
+       <bag name="menus" order-by="menuUuid" table="role_menu">
+       		<key column="roleUuid"></key>
+       		<many-to-many class="cn.itcast.erp.entity.Menu" column="menuUuid"></many-to-many>
+       </bag>
+            
+   
+</class>
+</hibernate-mapping>

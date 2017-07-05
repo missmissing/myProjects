@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--仓库库存-->
+<hibernate-mapping>
+<class name="cn.itcast.erp.entity.Storedetail" table="storedetail" >
+ <id name="uuid" >
+       <generator class="identity" />
+ </id>
+        <property name="num" />  
+        <many-to-one 
+        	  name="store"
+        	  class="cn.itcast.erp.entity.Store"
+        	  column="storeUuid"/>
+        <many-to-one 
+        	  name="goods"
+        	  class="cn.itcast.erp.entity.Goods"
+        	  column="goodsUuid"/>
+         
+</class>
+</hibernate-mapping>

@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--商品-->
+<hibernate-mapping>
+<class name="cn.itcast.erp.entity.Goods" table="goods" >
+ <id name="uuid" >
+       <generator class="identity" />
+ </id>
+
+        <property name="name" />       
+        <property name="origin" />       
+        <property name="producer" />       
+        <property name="unit" />       
+        <property name="inPrice" />       
+        <property name="outPrice" />       
+        <many-to-one 
+        	name="goodstype"
+        	class="cn.itcast.erp.entity.Goodstype"
+        	column="goodsTypeUuid" lazy="false">
+        </many-to-one>      
+   
+</class>
+</hibernate-mapping>

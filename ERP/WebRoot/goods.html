@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ERP管理系统 - 商品管理</title>
+
+<link rel="stylesheet" type="text/css" href="ui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="ui/themes/icon.css">
+<script type="text/javascript" src="ui/jquery.min.js"></script>
+<script type="text/javascript" src="ui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="ui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="js/form.js"></script>
+<!-- 本程序采用传智easyCode代码生成器生成  -->
+<script type="text/javascript"  src="js/crud.js"></script>
+<script type="text/javascript">
+var name='goods';
+var columns=[[    
+          	    {field:'uuid',title:'商品编号',width:100},
+				{field:'name',title:'商品名称',width:100},
+				{field:'origin',title:'产地',width:100},
+				{field:'producer',title:'厂家',width:100},
+				{field:'unit',title:'计量单位',width:100},
+				{field:'inPrice',title:'进货价格',width:100},
+				{field:'outPrice',title:'出货价格',width:100},
+				{field:'goodsTypeUuid',title:'商品类型',width:100,formatter:function(value,row,index){
+					return  row.goodstype.name;
+				}},
+
+         		{field:'-',title:'操作',width:100,formatter: function(value,row,index){
+         			return "<a href='#' onclick='update("+row.uuid +")'>修改</a> <a href='#' onclick='dele("+row.uuid +")'>删除</a>";
+         		   }
+         	    }
+         		
+         	]];
+
+
+</script>
+</head>
+<body>
+<div class="easyui-panel">
+
+<form id="searchForm">
+商品名称:<input name="t1.name">
+产地:<input name="t1.origin">
+厂家:<input name="t1.producer" class="easyui-combobox"
+	data-options="valueField:'producer',textField:'producer',url:'goods_getProducerList.action',mode:'remote'">
+计量单位:<input name="t1.unit" style="width:50px">&nbsp;&nbsp;
+进货价格(大于等于):<input name="t1.inPrice" style="width:50px">
+--出货价格(小于等于):<input name="t2.outPrice" style="width:50px">
+&nbsp;&nbsp;<button id="btnSearch" type="button">查询</button>
+</form>
+</div>
+
+<table id="grid"></table>
+
+<div id="editWindow" class="easyui-window" title="商品数据编辑" style="width: 350px;height: 350px" data-options="closed:true" >
+<center>
+<form id="editForm">		
+	<input name="t.uuid" type="hidden" >
+<font color="green"><h1>员工信息管理</h1></font>
+<table>
+	<tr><td>商品名称</td><td><input name="t.name"></td></tr>
+	<tr><td>产地</td><td><input name="t.origin"></td></tr>
+	<tr><td>厂家</td><td><input name="t.producer" class="easyui-combobox"
+	    data-options="valueField:'producer',textField:'producer',url:'goods_getProducerList.action',mode:'remote'">
+	</td></tr>
+	<tr><td>计量单位</td><td><input name="t.unit"></td></tr>
+	<tr><td>进货价格</td><td><input name="t.inPrice"></td></tr>
+	<tr><td>出货价格</td><td><input name="t.outPrice"></td></tr>
+	<tr><td>商品类型</td><td><input name="t.goodstype.uuid" class="easyui-combobox"
+		data-options="valueField:'uuid',textField:'name',url:'goodstype_list.action'">
+	</td></tr>
+		
+</table>
+<button id="btnSave" type="button">保存</button>
+</form>
+</center>
+</div>
+
+</body>
+</html>

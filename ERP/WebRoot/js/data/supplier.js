@@ -1,0 +1,1 @@
+var supplier = new Array();supplier[1]='王致和臭豆腐';supplier[2]='北京帽子厂';supplier[3]='北京皂厂';supplier[4]='玄德商贸有限公司';supplier[5]='兴隆超市';supplier[6]='新玛特';supplier[7]='鸿运商场';

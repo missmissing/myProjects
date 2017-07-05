@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ERP管理系统 - 订单入库</title>
+
+<link rel="stylesheet" type="text/css" href="ui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="ui/themes/icon.css">
+<script type="text/javascript" src="ui/jquery.min.js"></script>
+<script type="text/javascript" src="ui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="ui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="js/form.js"></script>
+<script type="text/javascript" src="js/date.js"></script>
+<!-- 本程序采用传智easyCode代码生成器生成  -->
+<script type="text/javascript"  src="js/orders.js"></script>
+<script type="text/javascript"  src="js/data/state.js"></script>
+<script type="text/javascript"  src="js/data/emp.js"></script>
+<script type="text/javascript"  src="js/data/supplier.js"></script>
+<script type="text/javascript"  src="ui/datagrid-detailview.js"></script>
+<script type="text/javascript"  src="js/request.js"></script>
+<script type="text/javascript">
+var operation={};
+var url="";
+if(Request['type']=='1')
+{
+	url="orders_listByPage.action?pdkey=Buy&task_def_key=doInstore";	
+}
+if(Request['type']=='2')
+{
+	url="orders_listByPage.action?t1.state=0&t1.orderType=2";	
+}
+</script>
+</head>
+<body>
+<div class="easyui-panel">
+
+<form id="searchForm">
+订单编号:<input name="t1.orderNum">
+订单状态:<input name="t1.state">
+ <button id="btnSearch" type="button">查询</button>
+</form>
+</div>
+
+<table id="grid"></table>
+
+<div id="orderWindow" title="订单明细" class="easyui-window" 
+	data-options="closed:true" style="width:300px;height:170px">
+ <center>
+	<form id="orderForm">
+	<input type="hidden" name="id" id="uuid">
+	<table>
+	<br/>
+		<tr>
+			<td width="100">商品ID:</td><td id="goodsUuid" width="100"></td>
+			<td width="120">商品名称:</td><td id="goodsName" width="100">  </td>
+		</tr>
+		<tr>
+			<td>数量:</td><td id="num"></td><td>选择仓库:</td><td> 
+			<input name="sotreUuid" size="15" class="easyui-combobox" data-options="url:'store_myList.action',valueField:'uuid',textField:'name'" >
+			
+			 </td>
+		</tr>
+	</table>
+	<br/>
+	<span id="instore">
+		<button type="button" onclick="doInStore()">入库</button>
+	</span>
+	<span id="outstore">
+		<button type="button" onclick="doOutStore()">出库</button>
+	</span>
+	
+	</form>
+ </center>
+</div>
+
+</body>
+</html>

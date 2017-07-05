@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop.xsd
+	http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx/spring-tx.xsd"> 
+						
+	<!-- 安全过滤器链，注意：id名称要和web.xml文件中的过滤器名称相同 -->
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean"
+		depends-on="myFilter">		
+		<property name="filters">
+			<map>
+				<entry key="perms" value-ref="myFilter"></entry>
+			</map>
+		</property>
+		
+		<!-- 注入安全管理器 -->
+		<property name="securityManager" ref="securityManager" />
+		<!-- 认证， 登陆页面     当用户没有登陆时，会自动跳转到此页面 -->		
+		<property name="loginUrl" value="/login.html" /> 
+		<!-- 授权，当用户访问无权限的页面时，会跳转到此页面 -->
+		<property name="unauthorizedUrl" value="/error.html" /> 
+		
+		<!-- 定义认证及授权的规则 -->
+		<property name="filterChainDefinitions">
+			<value>	
+			<!-- anon为不需要认证的url 、authc为需要认证的url -->				
+				/error.html = anon	
+				/login_*.action	= anon	
+				
+				/dep.html= perms["部门管理"]		
+				/dep_*.action= perms["部门管理"]
+				 						
+				/emp.html= perms["员工管理"]						
+				/emp_*.action= perms["员工管理"]	
+															
+				/goodstype.html= perms["商品类别"]	
+				/goods_list.action= perms["采购申请","销售订单录入"]					
+			    /goodstype_*.action= perms["商品类别"]	
+									
+				/goods.html= perms["商品管理"]
+				/goods_*.action= perms["商品管理"]
+				
+				/store.html= perms["仓库管理"]
+				/store_*.action= perms["仓库管理"]
+			
+				/storedetail.html= perms["库存管理"]
+				/storedetail_*.action= perms["库存管理"]
+										
+				/order_add.html= perms["采购申请","销售订单录入"]						
+				/orders_add.action= perms["采购申请","销售订单录入"]			
+				
+				/orders.html= perms["采购订单查询","销售订单查询"]
+				/orders_listByPage.action= perms["采购订单查询","采购订单审核","采购订单确认","采购订单入库","销售订单查询","销售订单出库"]
+				
+				/orders_check.html= perms["采购订单审核"]				
+				/orders_confirm.html= perms["采购订单确认"]				
+				/orders_instore.html= perms["采购订单入库","销售订单出库"]
+								
+				/supplier.html = perms["供应商管理","客户管理"]					
+				/supplier_list.action= perms["采购申请","销售订单录入"]
+				/supplier_*.action = perms["供应商管理","客户管理"]	
+					
+				/role.html= perms["角色管理"]
+				/role_*.action= perms["角色管理"]			
+				
+				/roleMenuSet.html=perms["角色权限设置"]
+				/role_getRoleMenu.action=perms["角色权限设置"]
+				/role_updateRoleMenu.action=perms["角色权限设置"]
+								
+				/empRoleSet.html=perms["用户角色设置"]
+				/emp_getEmpRole.action=perms["用户角色设置"]
+				/emp_updateEmpRole.action=perms["用户角色设置"]
+						
+				/*.html = authc	
+				/*.action = authc	
+				/*.jsp = authc				
+							
+			</value>
+		</property>
+	</bean>
+	
+	<!-- 安全管理器 -->
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<!-- 注入自定义的realm ，注意：此处的name要写成realm，不能随便定义，否则启动服务器时会出现找不到setter方法的错误-->
+		<property name="realm" ref="erpRealm"></property>
+	</bean>
+	
+	<!-- 自定义realm -->
+	<bean id="erpRealm" class="cn.itcast.erp.realm.ErpRealm">
+		<property name="empBiz" ref="empBiz"></property>
+		<property name="menuBiz" ref="menuBiz"></property>
+	</bean>
+	
+	<!-- 自定义授权过滤器 -->
+	<bean id="myFilter" class="cn.itcast.erp.filter.MyFilter">
+	</bean>
+</beans>

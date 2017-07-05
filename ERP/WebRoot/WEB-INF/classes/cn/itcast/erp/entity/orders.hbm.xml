@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--订单-->
+<hibernate-mapping>
+<class name="cn.itcast.erp.entity.Orders" table="orders" >
+ <id name="uuid" >
+       <generator class="identity" />
+ </id>
+
+        <property name="orderNum" />       
+        <property name="createTime" />       
+        <property name="checkTime" />       
+        <property name="startTime" />       
+        <property name="endTime" />       
+        <property name="orderType" />       
+        <property name="creater" />       
+        <property name="checker" />       
+        <property name="starter" />       
+        <property name="ender" />       
+        <property name="supplierUuid" />       
+        <property name="totalNum" />       
+        <property name="totalPrice" />       
+        <property name="state" />
+        <!-- order-by:表示按uuid进行排序   --> 
+        <!-- cascade:表示级联更新   --> 
+        <bag name="orderdetails" order-by="uuid" cascade="save-update">
+        	<key column="orderUuid"></key>
+        	<one-to-many class="cn.itcast.erp.entity.Orderdetail"/>
+        </bag>      
+   
+</class>
+</hibernate-mapping>

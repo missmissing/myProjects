@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ERP管理系统 - 销售统计分析表</title>
+
+<link rel="stylesheet" type="text/css" href="ui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="ui/themes/icon.css">
+<script type="text/javascript" src="ui/jquery.min.js"></script>
+<script type="text/javascript" src="ui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="ui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="js/form.js"></script>
+<script type="text/javascript" src="js/sheet.js"></script>
+<script type="text/javascript" src="js/date.js"></script>
+
+<script type="text/javascript">
+
+</script>
+</head>
+<body class="easyui-layout">
+<div data-options="region:'center',title:'销售统计表'" style="padding:5px;background:#eee;">
+	<div class="easyui-panel">
+	  <form id="searchForm">
+		起始时间<input type="text" name="date1" class="easyui-datebox" style="width:100px"/>
+		截止时间<input type="text" name="date2" class="easyui-datebox" style="width:100px"/>
+	    <button onclick="searchSheet()" type="button">统计</button>
+	    <button onclick="exportExcel()" type="button">导出excel</button>
+	  </form>
+	<table id="grid"></table>
+	</div>
+
+</div> 
+   
+<div data-options="region:'east',iconCls:'icon-reload',title:'销售统计图',split:true" style="width:500px;">
+<img id="chart" alt="销售统计图" src="">
+</div>  
+
+
+</body>
+</html>

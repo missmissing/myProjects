@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--订单明细-->
+<hibernate-mapping>
+<class name="cn.itcast.erp.entity.Orderdetail" table="orderdetail" >
+ <id name="uuid" >
+       <generator class="identity" />
+ </id>
+
+        <property name="num" />       
+        <property name="price" />       
+        <property name="money" />       
+        <property name="goodsUuid" />       
+        <property name="goodsName" />       
+        <property name="endTime" />       
+        <property name="ender" />       
+        <property name="storeUuid" />       
+        <property name="state" />
+        <many-to-one 
+        	name="orders" 
+        	column="orderUuid" 
+        	class="cn.itcast.erp.entity.Orders">
+        </many-to-one>       
+   
+</class>
+</hibernate-mapping>

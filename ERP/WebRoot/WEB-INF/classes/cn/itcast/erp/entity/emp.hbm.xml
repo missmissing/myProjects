@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--员工-->
+<hibernate-mapping>
+<class name="cn.itcast.erp.entity.Emp" table="emp" >
+ <id name="uuid" >
+       <generator class="identity" />
+ </id>
+
+        <property name="userName" />       
+        <property name="pwd" />       
+        <property name="name" />       
+        <property name="email" />       
+        <property name="tele" />       
+        <property name="gender" />       
+        <property name="address" />       
+        <property name="birthday" />       
+        <many-to-one 
+        	name="dep" 
+        	class="cn.itcast.erp.entity.Dep"
+        	column="depUuid" lazy="false">
+        </many-to-one>      
+   		<!-- 角色列表 -->
+   		<bag name="roles" table="emp_role" order-by="roleUuid">
+   			<key column="empUuid"></key>
+   			<many-to-many class="cn.itcast.erp.entity.Role" column="roleUuid"></many-to-many>
+   		</bag>
+</class>
+</hibernate-mapping>
