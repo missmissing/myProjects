@@ -17,7 +17,7 @@
 		<!-- 扫描基本包
 		 	把use-default-filters设为false是为了在扫描时不执行其它的扫描过滤器，只执行白名单中的扫描过滤器
 		 -->
-		 <context:component-scan base-package="cn.itcast" use-default-filters="false">
+		 <context:component-scan base-package="com.itcast" use-default-filters="false">
 		 	<!-- 只扫描Controller  白名单-->
 		 	<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 		 </context:component-scan>
@@ -37,7 +37,7 @@
 		<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
 			<property name="converters">
 				<list>
-					<bean class="cn.itcast.common.convertion.CustomTrimConverter"></bean>
+					<bean class="com.itcast.common.convertion.CustomTrimConverter"></bean>
 				</list>
 			</property>
 		</bean>
@@ -48,7 +48,7 @@
 			<mvc:interceptor>
 				<!-- 配置拦截的类 -->
 				<mvc:mapping path="/**/*" />
-				<bean class="cn.itcast.core.web.SpringmvcInterceptor" ></bean>
+				<bean class="com.itcast.core.web.SpringmvcInterceptor" ></bean>
 			</mvc:interceptor>
 		</mvc:interceptors>
 		

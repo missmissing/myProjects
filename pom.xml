@@ -15,6 +15,7 @@
         <module>jedis</module>
         <module>maventest</module>
         <module>mytest</module>
+        <module>spring-boot-demo</module>
         <module>ssm</module>
     </modules>
 
