@@ -1,4 +1,4 @@
-package com.feel.array;
+package com.feel.collection;
 
 
 import java.util.Arrays;

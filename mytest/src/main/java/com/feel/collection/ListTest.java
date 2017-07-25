@@ -1,4 +1,4 @@
-package com.feel.listt;
+package com.feel.collection;
 
 import java.util.List;
 
