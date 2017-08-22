@@ -18,6 +18,7 @@
     </properties>
 
     <modules>
+        <module>Head-First-Design-Patterns</module>
         <module>httb</module>
         <module>inquiry</module>
         <module>jedis</module>
