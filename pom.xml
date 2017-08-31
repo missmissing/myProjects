@@ -18,6 +18,7 @@
     </properties>
 
     <modules>
+        <module>ERP</module>
         <module>Head-First-Design-Patterns</module>
         <module>httb</module>
         <module>inquiry</module>

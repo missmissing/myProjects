@@ -1,21 +1,18 @@
 package cn.itcast.erp.action;
 
+import cn.itcast.erp.biz.IBaseBiz;
+import cn.itcast.erp.exception.ERPException;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.serializer.SerializerFeature;
+import org.apache.struts2.ServletActionContext;
+
+import javax.servlet.http.HttpServletResponse;
 import java.beans.IntrospectionException;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.struts2.ServletActionContext;
-
-import cn.itcast.erp.biz.IBaseBiz;
-import cn.itcast.erp.exception.ERPException;
-
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.serializer.SerializerFeature;
 
 public class BaseAction<T> {
 	
