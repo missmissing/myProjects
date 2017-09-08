@@ -12,7 +12,6 @@
     <artifactId>ERP</artifactId>
     <packaging>war</packaging>
 
-
     <build>
         <plugins>
             <plugin>
