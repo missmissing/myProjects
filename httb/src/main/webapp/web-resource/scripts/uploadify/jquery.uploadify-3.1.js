@@ -265,11 +265,11 @@ Released under the MIT License <http://www.opensource.org/licenses/mit-license.p
 					// Create some queue related objects and variables
 					swfuploadify.queueData = {
 						files              : {}, // The files in the queue
-						filesSelected      : 0, // The number of files selected in the last select operation
-						filesQueued        : 0, // The number of files added to the queue in the last select operation
-						filesReplaced      : 0, // The number of files replaced in the last select operation
+						filesSelected      : 0, // The number of files selected in the last select setoperation
+						filesQueued        : 0, // The number of files added to the queue in the last select setoperation
+						filesReplaced      : 0, // The number of files replaced in the last select setoperation
 						filesCancelled     : 0, // The number of files that were cancelled instead of replaced
-						filesErrored       : 0, // The number of files that caused error in the last select operation
+						filesErrored       : 0, // The number of files that caused error in the last select setoperation
 						uploadsSuccessful  : 0, // The number of files that were successfully uploaded
 						uploadsErrored     : 0, // The number of files that returned errors during upload
 						averageSpeed       : 0, // The average speed of the uploads in KB

@@ -271,7 +271,7 @@ public class PipeliningTest {
 
     List<Response<?>> responseList = new ArrayList<Response<?>>();
     for (int i = 0; i < 100000; i++) {
-      // any operation should be ok, but shouldn't forget about timeout
+      // any setoperation should be ok, but shouldn't forget about timeout
       responseList.add(p.setbit("test", 1, true));
     }
 

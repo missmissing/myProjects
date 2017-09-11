@@ -28,7 +28,7 @@ public interface MultiKeyCommands {
    * <strong>Don't use it in your regular application code.</strong>
    * If you're looking for a way to find keys in a subset of your keyspace, consider using {@link #scan(String, ScanParams)} or sets.
    * <p>
-   * While the time complexity for this operation is O(N), the constant times are fairly low.
+   * While the time complexity for this setoperation is O(N), the constant times are fairly low.
    * For example, Redis running on an entry level laptop can scan a 1 million key database in 40 milliseconds.
    * <p>
    * Glob style patterns examples:

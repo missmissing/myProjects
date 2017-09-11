@@ -89,7 +89,7 @@ public class Pipeline extends MultiKeyPipelineBase implements Closeable {
   }
 
   /**
-   * Synchronize pipeline by reading all responses. This operation close the pipeline. In order to
+   * Synchronize pipeline by reading all responses. This setoperation close the pipeline. In order to
    * get return values from pipelined commands, capture the different Response&lt;?&gt; of the
    * commands you execute.
    */
@@ -103,7 +103,7 @@ public class Pipeline extends MultiKeyPipelineBase implements Closeable {
   }
 
   /**
-   * Synchronize pipeline by reading all responses. This operation close the pipeline. Whenever
+   * Synchronize pipeline by reading all responses. This setoperation close the pipeline. Whenever
    * possible try to avoid using this version and use Pipeline.sync() as it won't go through all the
    * responses and generate the right response type (usually it is a waste of time).
    * @return A list of all the responses in the order you executed them.

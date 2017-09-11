@@ -293,7 +293,7 @@ public class BinaryJedis implements BasicCommands, BinaryJedisCommands, MultiKey
   }
 
   /**
-   * Remove the specified keys. If a given key does not exist no operation is performed for this
+   * Remove the specified keys. If a given key does not exist no setoperation is performed for this
    * key. The command returns the number of keys removed. Time complexity: O(1)
    * @param keys
    * @return Integer reply, specifically: an integer greater than 0 if one or more keys were removed
@@ -345,7 +345,7 @@ public class BinaryJedis implements BasicCommands, BinaryJedisCommands, MultiKey
    * you have in the database the keys "foo" and "foobar" the command "KEYS foo*" will return
    * "foo foobar".
    * <p>
-   * Note that while the time complexity for this operation is O(n) the constant times are pretty
+   * Note that while the time complexity for this setoperation is O(n) the constant times are pretty
    * low. For example Redis running on an entry level laptop can scan a 1 million keys database in
    * 40 milliseconds. <b>Still it's better to consider this one of the slow commands that may ruin
    * the DB performance if not used with care.</b>
@@ -569,7 +569,7 @@ public class BinaryJedis implements BasicCommands, BinaryJedisCommands, MultiKey
 
   /**
    * Get the values of all the specified keys. If one or more keys dont exist or is not of type
-   * String, a 'nil' value is returned instead of the value of the specified key, but the operation
+   * String, a 'nil' value is returned instead of the value of the specified key, but the setoperation
    * never fails.
    * <p>
    * Time complexity: O(1) for every key
@@ -585,7 +585,7 @@ public class BinaryJedis implements BasicCommands, BinaryJedisCommands, MultiKey
 
   /**
    * SETNX works exactly like {@link #set(byte[], byte[]) SET} with the only difference that if the
-   * key already exists no operation is performed. SETNX actually means "SET if Not eXists".
+   * key already exists no setoperation is performed. SETNX actually means "SET if Not eXists".
    * <p>
    * Time complexity: O(1)
    * @param key
@@ -601,7 +601,7 @@ public class BinaryJedis implements BasicCommands, BinaryJedisCommands, MultiKey
 
   /**
    * The command is exactly equivalent to the following group of commands:
-   * {@link #set(byte[], byte[]) SET} + {@link #expire(byte[], int) EXPIRE}. The operation is
+   * {@link #set(byte[], byte[]) SET} + {@link #expire(byte[], int) EXPIRE}. The setoperation is
    * atomic.
    * <p>
    * Time complexity: O(1)
@@ -619,7 +619,7 @@ public class BinaryJedis implements BasicCommands, BinaryJedisCommands, MultiKey
 
   /**
    * Set the the respective keys to the respective values. MSET will replace old values with new
-   * values, while {@link #msetnx(byte[]...) MSETNX} will not perform any operation at all even if
+   * values, while {@link #msetnx(byte[]...) MSETNX} will not perform any setoperation at all even if
    * just a single key already exists.
    * <p>
    * Because of this semantic MSETNX can be used in order to set different keys representing
@@ -642,7 +642,7 @@ public class BinaryJedis implements BasicCommands, BinaryJedisCommands, MultiKey
 
   /**
    * Set the the respective keys to the respective values. {@link #mset(byte[]...) MSET} will
-   * replace old values with new values, while MSETNX will not perform any operation at all even if
+   * replace old values with new values, while MSETNX will not perform any setoperation at all even if
    * just a single key already exists.
    * <p>
    * Because of this semantic MSETNX can be used in order to set different keys representing
@@ -670,7 +670,7 @@ public class BinaryJedis implements BasicCommands, BinaryJedisCommands, MultiKey
    * <p>
    * INCR commands are limited to 64 bit signed integers.
    * <p>
-   * Note: this is actually a string operation, that is, in Redis there are not "integer" types.
+   * Note: this is actually a string setoperation, that is, in Redis there are not "integer" types.
    * Simply the string stored at the key is parsed as a base 10 64 bit signed integer, incremented,
    * and then converted back as a string.
    * <p>
@@ -691,11 +691,11 @@ public class BinaryJedis implements BasicCommands, BinaryJedisCommands, MultiKey
 
   /**
    * Decrement the number stored at key by one. If the key does not exist or contains a value of a
-   * wrong type, set the key to the value of "0" before to perform the decrement operation.
+   * wrong type, set the key to the value of "0" before to perform the decrement setoperation.
    * <p>
    * INCR commands are limited to 64 bit signed integers.
    * <p>
-   * Note: this is actually a string operation, that is, in Redis there are not "integer" types.
+   * Note: this is actually a string setoperation, that is, in Redis there are not "integer" types.
    * Simply the string stored at the key is parsed as a base 10 64 bit signed integer, incremented,
    * and then converted back as a string.
    * <p>
@@ -719,7 +719,7 @@ public class BinaryJedis implements BasicCommands, BinaryJedisCommands, MultiKey
    * <p>
    * INCR commands are limited to 64 bit signed integers.
    * <p>
-   * Note: this is actually a string operation, that is, in Redis there are not "integer" types.
+   * Note: this is actually a string setoperation, that is, in Redis there are not "integer" types.
    * Simply the string stored at the key is parsed as a base 10 64 bit signed integer, incremented,
    * and then converted back as a string.
    * <p>
@@ -744,7 +744,7 @@ public class BinaryJedis implements BasicCommands, BinaryJedisCommands, MultiKey
    * <p>
    * INCRBYFLOAT commands are limited to double precision floating point values.
    * <p>
-   * Note: this is actually a string operation, that is, in Redis there are not "double" types.
+   * Note: this is actually a string setoperation, that is, in Redis there are not "double" types.
    * Simply the string stored at the key is parsed as a base double precision floating point value,
    * incremented, and then converted back as a string. There is no DECRYBYFLOAT but providing a
    * negative value will work as expected.
@@ -767,11 +767,11 @@ public class BinaryJedis implements BasicCommands, BinaryJedisCommands, MultiKey
 
   /**
    * Increment the number stored at key by one. If the key does not exist or contains a value of a
-   * wrong type, set the key to the value of "0" before to perform the increment operation.
+   * wrong type, set the key to the value of "0" before to perform the increment setoperation.
    * <p>
    * INCR commands are limited to 64 bit signed integers.
    * <p>
-   * Note: this is actually a string operation, that is, in Redis there are not "integer" types.
+   * Note: this is actually a string setoperation, that is, in Redis there are not "integer" types.
    * Simply the string stored at the key is parsed as a base 10 64 bit signed integer, incremented,
    * and then converted back as a string.
    * <p>
@@ -799,7 +799,7 @@ public class BinaryJedis implements BasicCommands, BinaryJedisCommands, MultiKey
    * Redis will double the free space available on every reallocation.
    * @param key
    * @param value
-   * @return Integer reply, specifically the total length of the string after the append operation.
+   * @return Integer reply, specifically the total length of the string after the append setoperation.
    */
   @Override
   public Long append(final byte[] key, final byte[] value) {
@@ -922,7 +922,7 @@ public class BinaryJedis implements BasicCommands, BinaryJedisCommands, MultiKey
   /**
    * Increment the number stored at field in the hash at key by value. If key does not exist, a new
    * key holding a hash is created. If field does not exist or holds a string, the value is set to 0
-   * before applying the operation. Since the value argument is signed you can use this command to
+   * before applying the setoperation. Since the value argument is signed you can use this command to
    * perform both increments and decrements.
    * <p>
    * The range of values supported by HINCRBY is limited to 64 bit signed integers.
@@ -931,7 +931,7 @@ public class BinaryJedis implements BasicCommands, BinaryJedisCommands, MultiKey
    * @param key
    * @param field
    * @param value
-   * @return Integer reply The new value at field after the increment operation.
+   * @return Integer reply The new value at field after the increment setoperation.
    */
   @Override
   public Long hincrBy(final byte[] key, final byte[] field, final long value) {
@@ -943,7 +943,7 @@ public class BinaryJedis implements BasicCommands, BinaryJedisCommands, MultiKey
   /**
    * Increment the number stored at field in the hash at key by a double precision floating point
    * value. If key does not exist, a new key holding a hash is created. If field does not exist or
-   * holds a string, the value is set to 0 before applying the operation. Since the value argument
+   * holds a string, the value is set to 0 before applying the setoperation. Since the value argument
    * is signed you can use this command to perform both increments and decrements.
    * <p>
    * The range of values supported by HINCRBYFLOAT is limited to double precision floating point
@@ -954,7 +954,7 @@ public class BinaryJedis implements BasicCommands, BinaryJedisCommands, MultiKey
    * @param field
    * @param value
    * @return Double precision floating point reply The new value at field after the increment
-   *         operation.
+   *         setoperation.
    */
   @Override
   public Double hincrByFloat(final byte[] key, final byte[] field, final double value) {
@@ -985,7 +985,7 @@ public class BinaryJedis implements BasicCommands, BinaryJedisCommands, MultiKey
    * @param key
    * @param fields
    * @return If the field was present in the hash it is deleted and 1 is returned, otherwise 0 is
-   *         returned and no operation is performed.
+   *         returned and no setoperation is performed.
    */
   @Override
   public Long hdel(final byte[] key, final byte[]... fields) {
@@ -1060,7 +1060,7 @@ public class BinaryJedis implements BasicCommands, BinaryJedisCommands, MultiKey
 
   /**
    * Add the string value to the head (LPUSH) or tail (RPUSH) of the list stored at key. If the key
-   * does not exist an empty list is created just before the append operation. If the key exists but
+   * does not exist an empty list is created just before the append setoperation. If the key exists but
    * is not a List an error is returned.
    * <p>
    * Time complexity: O(1)
@@ -1068,7 +1068,7 @@ public class BinaryJedis implements BasicCommands, BinaryJedisCommands, MultiKey
    * @param key
    * @param strings
    * @return Integer reply, specifically, the number of elements inside the list after the push
-   *         operation.
+   *         setoperation.
    */
   @Override
   public Long rpush(final byte[] key, final byte[]... strings) {
@@ -1079,7 +1079,7 @@ public class BinaryJedis implements BasicCommands, BinaryJedisCommands, MultiKey
 
   /**
    * Add the string value to the head (LPUSH) or tail (RPUSH) of the list stored at key. If the key
-   * does not exist an empty list is created just before the append operation. If the key exists but
+   * does not exist an empty list is created just before the append setoperation. If the key exists but
    * is not a List an error is returned.
    * <p>
    * Time complexity: O(1)
@@ -1087,7 +1087,7 @@ public class BinaryJedis implements BasicCommands, BinaryJedisCommands, MultiKey
    * @param key
    * @param strings
    * @return Integer reply, specifically, the number of elements inside the list after the push
-   *         operation.
+   *         setoperation.
    */
   @Override
   public Long lpush(final byte[] key, final byte[]... strings) {
@@ -1172,7 +1172,7 @@ public class BinaryJedis implements BasicCommands, BinaryJedisCommands, MultiKey
    * <p>
    * The above two commands will push elements in the list taking care that the list will not grow
    * without limits. This is very useful when using Redis to store logs for example. It is important
-   * to note that when used in this way LTRIM is an O(1) operation because in the average case just
+   * to note that when used in this way LTRIM is an O(1) setoperation because in the average case just
    * one element is removed from the tail of the list.
    * <p>
    * Time complexity: O(n) (with n being len of list - len of range)
@@ -1250,7 +1250,7 @@ public class BinaryJedis implements BasicCommands, BinaryJedisCommands, MultiKey
    * @param key
    * @param count
    * @param value
-   * @return Integer Reply, specifically: The number of removed elements if the operation succeeded
+   * @return Integer Reply, specifically: The number of removed elements if the setoperation succeeded
    */
   @Override
   public Long lrem(final byte[] key, final long count, final byte[] value) {
@@ -1300,7 +1300,7 @@ public class BinaryJedis implements BasicCommands, BinaryJedisCommands, MultiKey
    * RPOPLPUSH command the content of the two lists will be "a","b" and "c","foo","bar".
    * <p>
    * If the key does not exist or the list is already empty the special value 'nil' is returned. If
-   * the srckey and dstkey are the same the operation is equivalent to removing the last element
+   * the srckey and dstkey are the same the setoperation is equivalent to removing the last element
    * from the list and pusing it as first element of the list, so it's a "list rotation" command.
    * <p>
    * Time complexity: O(1)
@@ -1317,7 +1317,7 @@ public class BinaryJedis implements BasicCommands, BinaryJedisCommands, MultiKey
 
   /**
    * Add the specified member to the set value stored at key. If member is already a member of the
-   * set no operation is performed. If key does not exist a new set with the specified member as
+   * set no setoperation is performed. If key does not exist a new set with the specified member as
    * sole member is created. If the key exists but does not hold a set value an error is returned.
    * <p>
    * Time complexity O(1)
@@ -1350,7 +1350,7 @@ public class BinaryJedis implements BasicCommands, BinaryJedisCommands, MultiKey
 
   /**
    * Remove the specified member from the set value stored at key. If member was not a member of the
-   * set no operation is performed. If key does not hold a set value an error is returned.
+   * set no setoperation is performed. If key does not hold a set value an error is returned.
    * <p>
    * Time complexity O(1)
    * @param key the key of the set
@@ -1391,11 +1391,11 @@ public class BinaryJedis implements BasicCommands, BinaryJedisCommands, MultiKey
   }
 
   /**
-   * Move the specified member from the set at srckey to the set at dstkey. This operation is
+   * Move the specified member from the set at srckey to the set at dstkey. This setoperation is
    * atomic, in every given moment the element will appear to be in the source or destination set
    * for accessing clients.
    * <p>
-   * If the source set does not exist or does not contain the specified element no operation is
+   * If the source set does not exist or does not contain the specified element no setoperation is
    * performed and zero is returned, otherwise the element is removed from the source set and added
    * to the destination set. On success one is returned, even if the element was already present in
    * the destination set.
@@ -1407,7 +1407,7 @@ public class BinaryJedis implements BasicCommands, BinaryJedisCommands, MultiKey
    * @param dstkey
    * @param member
    * @return Integer reply, specifically: 1 if the element was moved 0 if the element was not found
-   *         on the first set and no operation was performed
+   *         on the first set and no setoperation was performed
    */
   @Override
   public Long smove(final byte[] srckey, final byte[] dstkey, final byte[] member) {
@@ -1639,7 +1639,7 @@ public class BinaryJedis implements BasicCommands, BinaryJedisCommands, MultiKey
 
   /**
    * Remove the specified member from the sorted set value stored at key. If member was not a member
-   * of the set no operation is performed. If key does not not hold a set value an error is
+   * of the set no setoperation is performed. If key does not not hold a set value an error is
    * returned.
    * <p>
    * Time complexity O(log(N)) with N being the number of elements in the sorted set
@@ -1981,13 +1981,13 @@ public class BinaryJedis implements BasicCommands, BinaryJedisCommands, MultiKey
    * <b>Blocking behavior</b>
    * <p>
    * If none of the specified keys exist or contain non empty lists, BLPOP blocks until some other
-   * client performs a LPUSH or an RPUSH operation against one of the lists.
+   * client performs a LPUSH or an RPUSH setoperation against one of the lists.
    * <p>
    * Once new data is present on one of the lists, the client finally returns with the name of the
    * key unblocking it and the popped value.
    * <p>
    * When blocking, if a non-zero timeout is specified, the client will unblock returning a nil
-   * special value if the specified amount of seconds passed without a push operation against at
+   * special value if the specified amount of seconds passed without a push setoperation against at
    * least one of the specified keys.
    * <p>
    * The timeout argument is interpreted as an integer value. A timeout of zero means instead to
@@ -2015,7 +2015,7 @@ public class BinaryJedis implements BasicCommands, BinaryJedisCommands, MultiKey
    * @return BLPOP returns a two-elements array via a multi bulk reply in order to return both the
    *         unblocking key and the popped value.
    *         <p>
-   *         When a non-zero timeout is specified, and the BLPOP operation timed out, the return
+   *         When a non-zero timeout is specified, and the BLPOP setoperation timed out, the return
    *         value is a nil multi bulk reply. Most client values will return false or nil
    *         accordingly to the programming language used.
    */
@@ -2095,13 +2095,13 @@ public class BinaryJedis implements BasicCommands, BinaryJedisCommands, MultiKey
    * <b>Blocking behavior</b>
    * <p>
    * If none of the specified keys exist or contain non empty lists, BLPOP blocks until some other
-   * client performs a LPUSH or an RPUSH operation against one of the lists.
+   * client performs a LPUSH or an RPUSH setoperation against one of the lists.
    * <p>
    * Once new data is present on one of the lists, the client finally returns with the name of the
    * key unblocking it and the popped value.
    * <p>
    * When blocking, if a non-zero timeout is specified, the client will unblock returning a nil
-   * special value if the specified amount of seconds passed without a push operation against at
+   * special value if the specified amount of seconds passed without a push setoperation against at
    * least one of the specified keys.
    * <p>
    * The timeout argument is interpreted as an integer value. A timeout of zero means instead to
@@ -2129,7 +2129,7 @@ public class BinaryJedis implements BasicCommands, BinaryJedisCommands, MultiKey
    * @return BLPOP returns a two-elements array via a multi bulk reply in order to return both the
    *         unblocking key and the popped value.
    *         <p>
-   *         When a non-zero timeout is specified, and the BLPOP operation timed out, the return
+   *         When a non-zero timeout is specified, and the BLPOP setoperation timed out, the return
    *         value is a nil multi bulk reply. Most client values will return false or nil
    *         accordingly to the programming language used.
    */
@@ -2513,7 +2513,7 @@ public class BinaryJedis implements BasicCommands, BinaryJedisCommands, MultiKey
    * and so forth.
    * <p>
    * <b>Time complexity:</b> O(log(N))+O(M) with N being the number of elements in the sorted set
-   * and M the number of elements removed by the operation
+   * and M the number of elements removed by the setoperation
    */
   @Override
   public Long zremrangeByRank(final byte[] key, final long start, final long end) {
@@ -2529,7 +2529,7 @@ public class BinaryJedis implements BasicCommands, BinaryJedisCommands, MultiKey
    * <b>Time complexity:</b>
    * <p>
    * O(log(N))+O(M) with N being the number of elements in the sorted set and M the number of
-   * elements removed by the operation
+   * elements removed by the setoperation
    * @param key
    * @param start
    * @param end
@@ -2760,7 +2760,7 @@ public class BinaryJedis implements BasicCommands, BinaryJedisCommands, MultiKey
    * <p>
    * Save the DB in background. The OK code is immediately returned. Redis forks, the parent
    * continues to server the clients, the child saves the DB on disk then exit. A client my be able
-   * to check if the operation succeeded using the LASTSAVE command.
+   * to check if the setoperation succeeded using the LASTSAVE command.
    * @return Status code reply
    */
   @Override
@@ -2775,7 +2775,7 @@ public class BinaryJedis implements BasicCommands, BinaryJedisCommands, MultiKey
    * href="http://redis.io/topics/persistence#append-only-file">Append Only File Howto</a>.
    * <p>
    * BGREWRITEAOF rewrites the Append Only File in background when it gets too big. The Redis Append
-   * Only File is a Journal, so every operation modifying the dataset is logged in the Append Only
+   * Only File is a Journal, so every setoperation modifying the dataset is logged in the Append Only
    * File (and replayed at startup). This means that the Append Only File always grows. In order to
    * rebuild its content the BGREWRITEAOF creates a new version of the append only file starting
    * directly form the dataset in memory in order to guarantee the generation of the minimal number

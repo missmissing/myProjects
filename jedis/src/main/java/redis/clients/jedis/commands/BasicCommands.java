@@ -19,7 +19,7 @@ public interface BasicCommands {
 
   /**
    * Delete all the keys of the currently selected DB. This command never fails.
-   The time-complexity for this operation is O(N), N being the number of keys in the database.
+   The time-complexity for this setoperation is O(N), N being the number of keys in the database.
    * @return OK
    */
   String flushDB();
@@ -59,7 +59,7 @@ public interface BasicCommands {
   String save();
 
   /**
-   * Save the DB in background. The OK code is immediately returned. Redis forks, the parent continues to serve the clients, the child saves the DB on disk then exits. A client may be able to check if the operation succeeded using the LASTSAVE command.
+   * Save the DB in background. The OK code is immediately returned. Redis forks, the parent continues to serve the clients, the child saves the DB on disk then exits. A client may be able to check if the setoperation succeeded using the LASTSAVE command.
    * @return ok
    */
   String bgsave();

@@ -72,7 +72,7 @@ public class RedisInputStream extends FilterInputStream {
   public byte[] readLineBytes() {
 
     /*
-     * This operation should only require one fill. In that typical case we optimize allocation and
+     * This setoperation should only require one fill. In that typical case we optimize allocation and
      * copy of the byte array. In the edge case where more than one fill is required then we take a
      * slower path and expand a byte array output stream as is necessary.
      */
@@ -105,7 +105,7 @@ public class RedisInputStream extends FilterInputStream {
   }
 
   /**
-   * Slow path in case a line of bytes cannot be read in one #fill() operation. This is still faster
+   * Slow path in case a line of bytes cannot be read in one #fill() setoperation. This is still faster
    * than creating the StrinbBuilder, String, then encoding as byte[] in Protocol, then decoding
    * back into a String.
    */
