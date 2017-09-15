@@ -26,6 +26,7 @@ public class SetOperationTest {
         list2.retainAll(list1);
 
         list1.stream().forEach(m -> System.out.println(m.toString()));
+        System.out.println("--");
         list2.stream().forEach(m -> System.out.println(m.toString()));
 
         System.out.println("--");

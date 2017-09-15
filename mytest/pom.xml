@@ -73,6 +73,7 @@
         <java.target.version>1.7</java.target.version>
         <file.encoding>UTF-8</file.encoding>
         <project.build.sourceEncoding>${file.encoding}</project.build.sourceEncoding>
+        <guava.version>18.0</guava.version>
     </properties>
 
     <dependencies>
@@ -138,5 +139,10 @@
             <version>${gson.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
+        </dependency>
     </dependencies>
 </project>
