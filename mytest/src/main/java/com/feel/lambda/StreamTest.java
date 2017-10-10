@@ -22,5 +22,8 @@ public class StreamTest {
         stringCollection.stream().filter(s -> s.startsWith("a")).forEach(System.out::println);
 
         stringCollection.stream().filter(s -> s.startsWith("a")).sorted((o1, o2) -> o1.compareTo(o2)).forEach(System.out::println);
+
+        stringCollection = null;
+        stringCollection.stream().forEach(s->{});
     }
 }
