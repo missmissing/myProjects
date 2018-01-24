@@ -13,12 +13,14 @@ public class MethodQuoteTest {
         final List<Car> cars = Arrays.asList(car);
 
         cars.forEach(c -> System.out.println(c));
+        cars.forEach(System.out::println);
+
         cars.forEach(Car::collide);
 
-        cars.forEach( Car::repair );
+        cars.forEach(Car::repair);
 
-        final Car police = Car.create( Car::new );
-        cars.forEach( police::follow );
+        final Car police = Car.create(Car::new);
+        cars.forEach(police::follow);
     }
 }
 

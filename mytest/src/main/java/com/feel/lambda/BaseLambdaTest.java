@@ -25,6 +25,7 @@ public class BaseLambdaTest {
         });
 
         Collections.sort(names,(o1, o2) -> o2.compareTo(o1));
+        //names.sort((o1, o2) -> o2.compareTo(o1));
 
         for (String s :
                 names) {

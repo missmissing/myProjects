@@ -1,6 +1,10 @@
-package com.feel.http;
+package com.feel.http.compare;
 
 import java.util.HashMap;
+
+/**
+ * 比较 连接池方式httpClient 和 httpUrlConnection 性能对比
+ */
 
 public class TestClientAndUrlConnection {
     public static void main(String[] args) {

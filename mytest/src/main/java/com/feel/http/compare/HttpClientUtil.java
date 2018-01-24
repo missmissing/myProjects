@@ -1,4 +1,4 @@
-package com.feel.http;
+package com.feel.http.compare;
 
 import org.apache.http.*;
 import org.apache.http.client.HttpRequestRetryHandler;

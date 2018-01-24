@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function qwer() {
+            var j = 0;
+            console.time('testForEach');
+            for (var i = 0; i < 100000; i++) {
+                if (1 == 2) console.log("12");
+                j+=1;
+            }
+            console.log(j);
+            console.timeEnd('testForEach');
+            alert();
+        }
+    </script>
+</head>
+<body>
+
+<button value="asdadas" title="" onclick="qwer()">测试</button>
+
+</body>
+</html>

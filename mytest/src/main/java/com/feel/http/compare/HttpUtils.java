@@ -1,4 +1,4 @@
-package com.feel.http;
+package com.feel.http.compare;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
